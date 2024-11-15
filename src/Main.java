@@ -7,7 +7,7 @@ public class Main {
             Command command = new Command();
             command.run();
         } catch (RuntimeException e) {
-            System.out.println("Sentimentos muito =(! Um erro aconteceu.");
+            System.out.println("Sentimos muito =(! Um erro aconteceu.");
         }
     }
 }
