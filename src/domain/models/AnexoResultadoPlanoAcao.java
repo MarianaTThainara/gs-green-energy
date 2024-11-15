@@ -1,5 +1,7 @@
 package domain.models;
 
+import domain.repositories.Repository;
+
 import java.time.LocalDateTime;
 
 public class AnexoResultadoPlanoAcao extends Model {
@@ -25,4 +27,5 @@ public class AnexoResultadoPlanoAcao extends Model {
     public LocalDateTime getDataEnvio() {
         return dataEnvio;
     }
+
 }

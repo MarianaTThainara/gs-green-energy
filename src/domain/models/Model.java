@@ -1,5 +1,7 @@
 package domain.models;
 
+import domain.repositories.Repository;
+
 import java.util.UUID;
 
 abstract class Model {

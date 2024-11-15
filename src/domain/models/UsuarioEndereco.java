@@ -1,5 +1,7 @@
 package domain.models;
 
+import domain.repositories.Repository;
+
 public class UsuarioEndereco extends Model {
 
     private Bairro bairro;
@@ -35,4 +37,5 @@ public class UsuarioEndereco extends Model {
     public String getComplemento() {
         return complemento;
     }
+
 }

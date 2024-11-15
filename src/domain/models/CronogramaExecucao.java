@@ -2,19 +2,19 @@ package domain.models;
 
 import domain.enums.CronogramaExecucaoStatusEnum;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class CronogramaExecucao extends Model {
 
     private CronogramaExecucaoStatusEnum status;
     private PlanoAcao planoAcao;
     private Estado estado;
-    private LocalDateTime dataInicioVotacao;
-    private LocalDateTime dataFimVotacao;
-    private LocalDateTime dataInicioExe;
-    private LocalDateTime dataFimExe;
+    private LocalDate dataInicioVotacao;
+    private LocalDate dataFimVotacao;
+    private LocalDate dataInicioExe;
+    private LocalDate dataFimExe;
 
-    public CronogramaExecucao(PlanoAcao planoAcao, Estado estado, LocalDateTime dataInicioVotacao, LocalDateTime dataFimVotacao, LocalDateTime dataInicioExe, LocalDateTime dataFimExe) {
+    public CronogramaExecucao(PlanoAcao planoAcao, Estado estado, LocalDate dataInicioVotacao, LocalDate dataFimVotacao, LocalDate dataInicioExe, LocalDate dataFimExe) {
         this.status = CronogramaExecucaoStatusEnum.EMABERTO;
         this.planoAcao = planoAcao;
         this.estado = estado;
@@ -36,19 +36,19 @@ public class CronogramaExecucao extends Model {
         return estado;
     }
 
-    public LocalDateTime getDataInicioVotacao() {
+    public LocalDate getDataInicioVotacao() {
         return dataInicioVotacao;
     }
 
-    public LocalDateTime getDataFimVotacao() {
+    public LocalDate getDataFimVotacao() {
         return dataFimVotacao;
     }
 
-    public LocalDateTime getDataInicioExe() {
+    public LocalDate getDataInicioExe() {
         return dataInicioExe;
     }
 
-    public LocalDateTime getDataFimExe() {
+    public LocalDate getDataFimExe() {
         return dataFimExe;
     }
 

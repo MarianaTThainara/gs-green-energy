@@ -9,13 +9,6 @@ public class PlanoAcaoVoto extends Model {
     private LocalDateTime dataVoto;
     private String observacoes;
 
-    public PlanoAcaoVoto(CronogramaExecucao cronograma, Usuario usuario, boolean aprova) {
-        this.cronograma = cronograma;
-        this.usuario = usuario;
-        this.dataVoto = LocalDateTime.now();
-        this.observacoes = observacoes;
-    }
-
     public PlanoAcaoVoto(CronogramaExecucao cronograma, Usuario usuario) {
         this.cronograma = cronograma;
         this.usuario = usuario;

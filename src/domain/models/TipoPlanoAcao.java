@@ -8,6 +8,11 @@ public class TipoPlanoAcao extends Model {
     private PrioridadeTipoPlanoAcaoEnum prioridade;
     private String descricao;
 
+    public TipoPlanoAcao(String nome, PrioridadeTipoPlanoAcaoEnum prioridade) {
+        this.nome = nome;
+        this.prioridade = prioridade;
+    }
+
     public TipoPlanoAcao(String nome, String descricao, PrioridadeTipoPlanoAcaoEnum prioridade) {
         this.nome = nome;
         this.descricao = descricao;
@@ -20,5 +25,9 @@ public class TipoPlanoAcao extends Model {
 
     public String getDescricao() {
         return descricao;
+    }
+
+    public PrioridadeTipoPlanoAcaoEnum getPrioridade() {
+        return prioridade;
     }
 }
