@@ -28,7 +28,7 @@ public class ReviewActivityCommand implements CommandInterface {
         for (Map.Entry<String, ResultadoPlanoAcao> entry : db.getResultadosPlanosAcao().entrySet()) {
             ResultadoPlanoAcao resultado = entry.getValue();
 
-            if (resultado.getStatusValidacao() == null) { // Somente as atividades não validadas
+            if (resultado.getStatusValidacao() == null) {
                 System.out.println("ID: " + resultado.getId() + " | Plano: " + resultado.getPlanoAcao().getNome() + " | Usuário: " + resultado.getUsuario().getNome());
                 System.out.println("Imagem: " + resultado.getImagemUrl());
                 System.out.print("Deseja aprovar a atividade? (1 para Sim, 2 para Não): ");

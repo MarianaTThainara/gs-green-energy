@@ -4,7 +4,6 @@ import console.Printer;
 import console.commands.app.CronogramaExecucaoCreateCommand;
 import console.commands.app.PlanoAcaoCreateCommand;
 import console.commands.app.TipoPlanoAcaoCreateCommand;
-import console.commands.app.ValidateActivityCommand;
 import console.commands.app.ReviewActivityCommand;
 import console.interfaces.CommandInterface;
 import database.Database;

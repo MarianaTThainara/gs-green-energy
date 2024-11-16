@@ -21,26 +21,26 @@ public class ValidateActivityCommand implements CommandInterface {
 
     @Override
     public void run() {
-        // Usuário e Comunidade fictícios para demonstração
+
         Usuario usuario = new Usuario("Maria", "Silva", 12345678901L, "maria@example.com", "senha123", null);
         Comunidade comunidade = new Comunidade("Comunidade Verde", "Focada em sustentabilidade", null);
 
-        // Plano de Ação fictício
+
         TipoPlanoAcao tipoPlanoAcao = new TipoPlanoAcao("Economia de Energia", PrioridadeTipoPlanoAcaoEnum.ALTA);
         PlanoAcao planoAcao = new PlanoAcao(tipoPlanoAcao, null, "Redução de Consumo", "20%", 75);
 
-        // Resultado do Plano de Ação fictício
+
         ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(planoAcao, comunidade, usuario, 15, "Economia registrada");
         resultado.setImagemUrl("caminho/para/imagem.jpg");
 
-        // Serviço para validar a atividade
+
         PlanoAcaoService planoAcaoService = new PlanoAcaoService();
 
-        // Simulando validação (1 para Aprovar, 2 para Negar)
+
         boolean isAprovado = chooseApproval();
         planoAcaoService.validarAtividade(usuario, resultado, isAprovado);
 
-        // Exibindo o status final e créditos do usuário
+
         System.out.println("Status de Validação: " + resultado.getStatusValidacao());
         System.out.println("Créditos do Usuário: " + usuario.getNome() + " - Créditos: " + usuario.toString());
     }
