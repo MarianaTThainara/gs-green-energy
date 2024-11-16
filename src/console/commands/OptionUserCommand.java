@@ -1,6 +1,7 @@
 package console.commands;
 
 import console.Printer;
+import console.commands.app.CompleteActivityCommand;
 import console.commands.app.PlanoAcaoVotoCommand;
 import console.interfaces.CommandInterface;
 import database.Database;
@@ -33,7 +34,7 @@ public class OptionUserCommand {
         do {
             option();
 
-            var choose = choose();
+            var choose = choose(usuario);
 
             if(choose == null) {
                 return;
@@ -43,10 +44,12 @@ public class OptionUserCommand {
         } while (op != 0);
     }
 
-    private CommandInterface choose() {
+    private CommandInterface choose(Usuario usuario) {
         switch (op) {
             case 1:
                 return new PlanoAcaoVotoCommand(sc, db);
+            case 2:
+                return new CompleteActivityCommand(sc, db, usuario); // Novo comando para completar atividade
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -62,9 +65,11 @@ public class OptionUserCommand {
         printer.soutln("| Por favor, selecione uma das opções abaixo: |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  1  | Votar em um plano de ação            |");
+        printer.soutln("|  2  | Completar uma atividade              |"); // Nova opção para completar atividade
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");
-        printer.sout("Opção: "); op = sc.nextInt();
+        printer.sout("Opção: ");
+        op = sc.nextInt();
     }
 }

@@ -4,6 +4,8 @@ import console.Printer;
 import console.commands.app.CronogramaExecucaoCreateCommand;
 import console.commands.app.PlanoAcaoCreateCommand;
 import console.commands.app.TipoPlanoAcaoCreateCommand;
+import console.commands.app.ValidateActivityCommand;
+import console.commands.app.ReviewActivityCommand;
 import console.interfaces.CommandInterface;
 import database.Database;
 import infra.exceptions.InvalidOptionException;
@@ -26,10 +28,9 @@ public class OptionAdminCommand {
     public void handle() {
         do {
             option();
-
             var choose = choose();
 
-            if(choose == null) {
+            if (choose == null) {
                 return;
             }
 
@@ -45,6 +46,8 @@ public class OptionAdminCommand {
                 return new PlanoAcaoCreateCommand(sc, db);
             case 3:
                 return new CronogramaExecucaoCreateCommand(sc, db);
+            case 4:
+                return new ReviewActivityCommand(sc, db); // Novo comando de revisão de atividade
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -62,9 +65,11 @@ public class OptionAdminCommand {
         printer.soutln("|  1  | Cadastrar tipos planos de ação       |");
         printer.soutln("|  2  | Cadastrar planos de ação             |");
         printer.soutln("|  3  | Cadastrar cronograma de execução     |");
+        printer.soutln("|  4  | Validar atividade                    |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");
-        printer.sout("Opção: "); op = sc.nextInt();
+        printer.sout("Opção: ");
+        op = sc.nextInt();
     }
 }

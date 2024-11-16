@@ -1,10 +1,26 @@
 package domain.services;
+
+import domain.enums.StatusValidacaoEnum;
+import domain.models.Usuario;
+import domain.models.ResultadoPlanoAcao;
+import domain.models.PlanoAcao;
 import domain.models.TipoPlanoAcao;
-import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 
 public class PlanoAcaoService extends Service {
 
-    public int calcularPontosPorPrioridade(TipoPlanoAcao tipoPlano) {
+    public void validarAtividade(Usuario usuario, ResultadoPlanoAcao resultado, boolean isAprovado) {
+        if (isAprovado) {
+            int pontos = calcularPontosPorPrioridade(resultado.getPlanoAcao().getTipo());
+            usuario.adicionarCreditosVerde(pontos);
+            resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
+            System.out.println("Atividade validada! " + pontos + " créditos foram adicionados para o usuário " + usuario.getNome());
+        } else {
+            resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
+            System.out.println("A atividade não atende aos requisitos de validação. Por favor, revise e envie uma nova imagem.");
+        }
+    }
+
+    private int calcularPontosPorPrioridade(TipoPlanoAcao tipoPlano) {
         switch (tipoPlano.getPrioridade()) {
             case ALTA:
                 return 10;
@@ -14,5 +30,4 @@ public class PlanoAcaoService extends Service {
                 return 0;
         }
     }
-
 }
