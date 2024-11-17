@@ -2,6 +2,7 @@ package console.commands.app;
 
 import database.Database;
 import domain.models.CronogramaExecucao;
+import domain.models.Estado;
 import domain.models.PlanoAcao;
 
 import java.time.LocalDate;
@@ -17,8 +18,8 @@ public class CronogramaExecucaoCreateCommand extends AppCommand {
     public void run() {
         printer.banner("Cadastrar cronograma de execução");
 
-        PlanoAcao planoAcao = choosePlanoAcao(db);
-        if(planoAcao == null) { back(); return; }
+        Estado estado = chooseEstado(db);
+        if(estado == null) { back(); return; }
 
         LocalDate dataInicioVotacao = chooseDate("Defina a data de início da votação");
         LocalDate dataFimVotacao = chooseDate("Defina a data fim da votação");
@@ -26,8 +27,7 @@ public class CronogramaExecucaoCreateCommand extends AppCommand {
         LocalDate dataFimExe = chooseDate("Defina a data fim do plano de ação");
 
         CronogramaExecucao cronograma = new CronogramaExecucao(
-                planoAcao,
-                planoAcao.getEstado(),
+                estado,
                 dataInicioVotacao,
                 dataFimVotacao,
                 dataInicioExe,

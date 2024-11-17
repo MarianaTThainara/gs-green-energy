@@ -2,6 +2,7 @@ package console.commands.app;
 
 import console.interfaces.CommandInterface;
 import database.Database;
+import domain.models.AnexoResultadoPlanoAcao;
 import domain.models.PlanoAcao;
 import domain.models.ResultadoPlanoAcao;
 import domain.models.Usuario;
@@ -34,7 +35,9 @@ public class CompleteActivityCommand implements CommandInterface {
 
         // Cria um novo resultado de atividade para ser revisado pelo administrador
         ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(planoAcao, usuario.getComunidades().values().iterator().next(), usuario, 0);
-        resultado.setImagemUrl(imagemUrl);
+
+        AnexoResultadoPlanoAcao anexo = new AnexoResultadoPlanoAcao(resultado, imagemUrl);
+        resultado.getAnexos().put(anexo.getId(), anexo);
 
         // Salva o resultado no banco de dados para que o administrador possa revisá-lo
         db.getResultadosPlanosAcao().put(resultado.getId(), resultado);

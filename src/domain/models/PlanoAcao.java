@@ -1,11 +1,13 @@
 package domain.models;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 public class PlanoAcao extends Model {
 
     private TipoPlanoAcao tipo;
     private Estado estado;
+    private CronogramaExecucao cronograma;
     private String nome;
     private String meta;
     private float metaAdesaoMin;
@@ -13,12 +15,13 @@ public class PlanoAcao extends Model {
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAlteracao;
 
-    public PlanoAcao(TipoPlanoAcao tipo, Estado estado, String nome, String meta, float metaAdesaoMin) {
+    public PlanoAcao(TipoPlanoAcao tipo, CronogramaExecucao cronograma, String nome, String meta, float metaAdesaoMin) {
         this.tipo = tipo;
-        this.estado = estado;
+        this.estado = cronograma.getEstado();
         this.nome = nome;
         this.meta = meta;
         this.metaAdesaoMin = metaAdesaoMin;
+        this.dataCriacao = LocalDateTime.now();
     }
 
     public TipoPlanoAcao getTipo() {
@@ -27,6 +30,10 @@ public class PlanoAcao extends Model {
 
     public Estado getEstado() {
         return estado;
+    }
+
+    public CronogramaExecucao getCronograma() {
+        return cronograma;
     }
 
     public String getNome() {
@@ -60,4 +67,5 @@ public class PlanoAcao extends Model {
     public void setDataAlteracao(LocalDateTime dataAlteracao) {
         this.dataAlteracao = dataAlteracao;
     }
+
 }

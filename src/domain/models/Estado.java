@@ -1,6 +1,5 @@
 package domain.models;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Estado extends Model {
