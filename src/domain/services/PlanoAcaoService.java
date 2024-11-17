@@ -11,13 +11,15 @@ public class PlanoAcaoService extends Service {
     public void validarAtividade(Usuario usuario, ResultadoPlanoAcao resultado, boolean isAprovado) {
         if (isAprovado) {
             int pontos = calcularPontosPorPrioridade(resultado.getPlanoAcao().getTipo());
-            usuario.adicionarCreditosVerde(pontos);
+
+            usuario.setCreditosVerde(usuario.getCreditosVerde() + pontos);
             resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
             System.out.println("Atividade validada! " + pontos + " créditos foram adicionados para o usuário " + usuario.getNome());
-        } else {
-            resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
-            System.out.println("A atividade não atende aos requisitos de validação. Por favor, revise e envie uma nova imagem.");
+            return;
         }
+
+        resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
+        System.out.println("A atividade não atende aos requisitos de validação. Por favor, revise e envie uma nova imagem.");
     }
 
     private int calcularPontosPorPrioridade(TipoPlanoAcao tipoPlano) {

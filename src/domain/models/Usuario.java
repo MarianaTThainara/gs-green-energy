@@ -13,7 +13,7 @@ public class Usuario extends Model {
     private Long cpf;
     private HashMap<String, UsuarioEndereco> enderecos;
     private HashMap<String, Comunidade> comunidades;
-    private int creditosVerde;
+    private float creditosVerde;
 
     public Usuario(String nome, String sobrenome, Long cpf, String email, String senha, HashMap<String, UsuarioEndereco> enderecos) {
         this.nome = nome;
@@ -23,17 +23,7 @@ public class Usuario extends Model {
         this.senha = senha;
         this.enderecos = enderecos;
         this.comunidades = new HashMap<>();
-        this.creditosVerde = 0;
-    }
-
-    public void adicionarCreditosVerde(int pontos) {
-        this.creditosVerde += pontos;
-    }
-
-    public void removerCreditosVerde(int pontos) {
-        if (this.creditosVerde >= pontos) {
-            this.creditosVerde -= pontos;
-        }
+        this.creditosVerde = 0f;
     }
 
     public String getNome() {
@@ -54,6 +44,14 @@ public class Usuario extends Model {
 
     public HashMap<String, Comunidade> getComunidades() {
         return comunidades;
+    }
+
+    public float getCreditosVerde() {
+        return creditosVerde;
+    }
+
+    public void setCreditosVerde(float creditosVerde) {
+        this.creditosVerde = creditosVerde;
     }
 
     @Override
