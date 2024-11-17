@@ -12,7 +12,7 @@ public class ResultadoPlanoAcao extends Model {
     private Usuario usuario;
     private LocalDateTime dataConclusao;
     private float ecoEnergia;
-    private float qtdDisp;
+    private int qtdDisp;
     private String observacoes;
     private StatusValidacaoEnum statusValidacao;
     private HashMap<String, AnexoResultadoPlanoAcao> anexos;
@@ -29,7 +29,7 @@ public class ResultadoPlanoAcao extends Model {
         this.ecoEnergia = ecoEnergia;
     }
 
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, float qtdDisp) {
+    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, int qtdDisp) {
         this.planoAcao = planoAcao;
         this.comunidade = comunidade;
         this.usuario = usuario;
@@ -42,7 +42,7 @@ public class ResultadoPlanoAcao extends Model {
         this.observacoes = observacoes;
     }
 
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float qtdDisp, String observacoes) {
+    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, int qtdDisp, String observacoes) {
         this(planoAcao, comunidade, usuario);
         this.qtdDisp = qtdDisp;
         this.observacoes = observacoes;
