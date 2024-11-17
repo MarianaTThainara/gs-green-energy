@@ -10,7 +10,7 @@ public class ResultadoPlanoAcao extends Model {
     private Usuario usuario;
     private LocalDateTime dataConclusao;
     private float ecoEnergia;
-    private float qtd_disp;
+    private float qtdDisp;
     private String observacoes;
     private String imagemUrl;
     private StatusValidacaoEnum statusValidacao;
@@ -24,11 +24,11 @@ public class ResultadoPlanoAcao extends Model {
         this.observacoes = observacoes;
     }
 
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float qtd_disp, String observacoes) {
+    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float qtdDisp, String observacoes) {
         this.planoAcao = planoAcao;
         this.usuario = usuario;
         this.comunidade = comunidade;
-        this.qtd_disp = qtd_disp;
+        this.qtdDisp = qtdDisp;
         this.observacoes = observacoes;
     }
 
@@ -39,11 +39,11 @@ public class ResultadoPlanoAcao extends Model {
         this.ecoEnergia = ecoEnergia;
     }
 
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, float qtd_disp) {
+    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, float qtdDisp) {
         this.planoAcao = planoAcao;
         this.comunidade = comunidade;
         this.usuario = usuario;
-        this.qtd_disp = qtd_disp;
+        this.qtdDisp = qtdDisp;
     }
 
     // Métodos getters para obter as propriedades
