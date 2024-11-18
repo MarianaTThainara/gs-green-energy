@@ -15,7 +15,7 @@ public class PontuacaoService {
             2, 300, // Segunda posição no ranking
             3, 200  // Terceira posição no ranking
     );
-    private static final int PONTOS_PARTICIPACAO_COMUNIDADE = 100; // Para comunidades fora do top 3
+    private static final int PONTOS_PARTICIPACAO_COMUNIDADE = 100; // Comunidades fora do top 3
 
     public void pontuarAtividade(Usuario usuario, String prioridade) {
         int pontos = switch (prioridade.toUpperCase()) {

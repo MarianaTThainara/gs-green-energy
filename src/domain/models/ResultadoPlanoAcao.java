@@ -30,9 +30,7 @@ public class ResultadoPlanoAcao extends Model {
     }
 
     public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, int qtdDisp) {
-        this.planoAcao = planoAcao;
-        this.comunidade = comunidade;
-        this.usuario = usuario;
+        this(planoAcao, comunidade, usuario);
         this.qtdDisp = qtdDisp;
     }
 
@@ -48,27 +46,29 @@ public class ResultadoPlanoAcao extends Model {
         this.observacoes = observacoes;
     }
 
-    public PlanoAcao getPlanoAcao() {
-        return planoAcao;
-    }
+    public PlanoAcao getPlanoAcao() { return planoAcao; }
 
-    public Comunidade getComunidade() {
-        return comunidade;
-    }
+    public Comunidade getComunidade() { return comunidade; }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+    public Usuario getUsuario() { return usuario; }
 
-    public StatusValidacaoEnum getStatusValidacao() {
-        return statusValidacao;
-    }
+    public LocalDateTime getDataConclusao() { return dataConclusao; }
 
-    public HashMap<String, AnexoResultadoPlanoAcao> getAnexos() {
-        return anexos;
-    }
+    public void setDataConclusao(LocalDateTime dataConclusao) { this.dataConclusao = dataConclusao; }
 
-    public void setStatusValidacao(StatusValidacaoEnum statusValidacao) {
-        this.statusValidacao = statusValidacao;
-    }
+    public float getEcoEnergia() { return ecoEnergia; }
+
+    public int getQtdDisp() { return qtdDisp; }
+
+    public String getObservacoes() { return observacoes; }
+
+    public StatusValidacaoEnum getStatusValidacao() { return statusValidacao; }
+
+    public void setStatusValidacao(StatusValidacaoEnum statusValidacao) { this.statusValidacao = statusValidacao; }
+
+    public HashMap<String, AnexoResultadoPlanoAcao> getAnexos() { return anexos; }
+
+    public void addAnexo(AnexoResultadoPlanoAcao anexo) { this.anexos.put(anexo.getId(), anexo); }
+
+    public void removeAnexo(String anexoId) { this.anexos.remove(anexoId); }
 }
