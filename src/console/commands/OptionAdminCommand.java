@@ -5,9 +5,11 @@ import console.commands.app.CronogramaExecucaoCreateCommand;
 import console.commands.app.PlanoAcaoCreateCommand;
 import console.commands.app.TipoPlanoAcaoCreateCommand;
 import console.commands.app.ReviewActivityCommand;
+import console.commands.app.ExibirRankingCommand;
 import console.interfaces.CommandInterface;
 import database.Database;
 import infra.exceptions.InvalidOptionException;
+
 
 import java.util.Scanner;
 
@@ -47,6 +49,8 @@ public class OptionAdminCommand {
                 return new CronogramaExecucaoCreateCommand(sc, db);
             case 4:
                 return new ReviewActivityCommand(sc, db); // Novo comando de revisão de atividade
+            case 5:
+                return new ExibirRankingCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -65,6 +69,7 @@ public class OptionAdminCommand {
         printer.soutln("|  2  | Cadastrar planos de ação             |");
         printer.soutln("|  3  | Cadastrar cronograma de execução     |");
         printer.soutln("|  4  | Validar atividade                    |");
+        printer.soutln("|  5  | Exibir ranking de comunidades        |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");
