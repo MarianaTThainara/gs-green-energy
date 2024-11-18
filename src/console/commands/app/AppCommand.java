@@ -82,10 +82,13 @@ public abstract class AppCommand implements CommandInterface {
         return selectItem(
                 cronogramas,
                 "Nenhum cronograma encontrado!",
-                plano -> String.format(
-                        "Plano de ação: %s | Meta: %s",
-                        plano.getPlanoAcao().getNome(),
-                        plano.getPlanoAcao().getMeta()
+                crono -> String.format(
+                        "Estado: %s | Data início votação: %s | Data fim votação: %s | Data início plano: %s | Data fim plano: %s ",
+                        crono.getEstado().getNome(),
+                        crono.getDataInicioVotacao(),
+                        crono.getDataFimVotacao(),
+                        crono.getDataInicioExe(),
+                        crono.getDataFimExe()
                 ),
                 "Escolha um cronograma (número): "
         );

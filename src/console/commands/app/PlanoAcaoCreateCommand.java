@@ -1,6 +1,7 @@
 package console.commands.app;
 
 import database.Database;
+import domain.models.CronogramaExecucao;
 import domain.models.Estado;
 import domain.models.PlanoAcao;
 import domain.models.TipoPlanoAcao;
@@ -22,8 +23,8 @@ public class PlanoAcaoCreateCommand extends AppCommand {
         TipoPlanoAcao tipo = chooseTipoPlanoAcao(db);
         if(tipo == null) { back(); return; }
 
-        Estado estado = chooseEstado(db);
-        if(estado == null) { back(); return; }
+        CronogramaExecucao cronogramaExecucao = chooseCronogramaExecucao(db);
+        if(cronogramaExecucao == null) { back(); return; }
 
         printer.sout("Defina o nome do plano de ação: ");
         String nome = sc.next() + sc.nextLine();
@@ -34,7 +35,7 @@ public class PlanoAcaoCreateCommand extends AppCommand {
         printer.sout("Define a meta de adesão mínima: ");
         float metaAdesaoMin = sc.nextFloat();
 
-        PlanoAcao plano = new PlanoAcao(tipo, estado, nome, meta, metaAdesaoMin);
+        PlanoAcao plano = new PlanoAcao(tipo, cronogramaExecucao, nome, meta, metaAdesaoMin);
         db.getPlanosAcao().put(plano.getId(), plano);
 
         printer.soutln("Plano de ação cadastrado com sucesso!");
