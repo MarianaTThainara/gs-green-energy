@@ -14,6 +14,8 @@ public class Usuario extends Model {
     private HashMap<String, UsuarioEndereco> enderecos;
     private HashMap<String, Comunidade> comunidades;
     private float creditosVerde;
+    private double consumoAnterior = 0.0;
+    private double consumoAtual = 0.0;
 
     public Usuario(String nome, String sobrenome, Long cpf, String email, String senha, HashMap<String, UsuarioEndereco> enderecos) {
         this.nome = nome;
@@ -53,6 +55,14 @@ public class Usuario extends Model {
     public void setCreditosVerde(float creditosVerde) {
         this.creditosVerde = creditosVerde;
     }
+
+    public double getConsumoAnterior() { return consumoAnterior; }
+
+    public void setConsumoAnterior(double consumoAnterior) { this.consumoAnterior = consumoAnterior; }
+
+    public double getConsumoAtual() { return consumoAtual; }
+
+    public void setConsumoAtual(double consumoAtual) { this.consumoAtual = consumoAtual; }
 
     @Override
     public String toString() {
