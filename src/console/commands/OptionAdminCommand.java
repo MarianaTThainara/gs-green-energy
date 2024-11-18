@@ -44,11 +44,11 @@ public class OptionAdminCommand {
             case 1:
                 return new TipoPlanoAcaoCreateCommand(sc, db);
             case 2:
-                return new PlanoAcaoCreateCommand(sc, db);
-            case 3:
                 return new CronogramaExecucaoCreateCommand(sc, db);
+            case 3:
+                return new PlanoAcaoCreateCommand(sc, db);
             case 4:
-                return new ReviewActivityCommand(sc, db); // Novo comando de revisão de atividade
+                return new ReviewActivityCommand(sc, db);
             case 5:
                 return new ExibirRankingCommand(sc, db);
             case 0:
@@ -66,8 +66,8 @@ public class OptionAdminCommand {
         printer.soutln("| Por favor, selecione uma das opções abaixo: |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  1  | Cadastrar tipos planos de ação       |");
-        printer.soutln("|  2  | Cadastrar planos de ação             |");
-        printer.soutln("|  3  | Cadastrar cronograma de execução     |");
+        printer.soutln("|  2  | Cadastrar cronograma de execução     |");
+        printer.soutln("|  3  | Cadastrar planos de ação             |");
         printer.soutln("|  4  | Validar atividade                    |");
         printer.soutln("|  5  | Exibir ranking de comunidades        |");
         printer.soutln("----------------------------------------------");
