@@ -1,9 +1,11 @@
 package console.commands.app;
 
 import database.Database;
+import domain.enums.GrupoPlanoAcaoEnum;
 import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 import domain.models.TipoPlanoAcao;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class TipoPlanoAcaoCreateCommand extends AppCommand {
@@ -18,34 +20,36 @@ public class TipoPlanoAcaoCreateCommand extends AppCommand {
 
         printer.sout("Defina o nome: ");
         String nome = sc.next() + sc.nextLine();
-        PrioridadeTipoPlanoAcaoEnum prioridade = handlePrioridade();
 
-        TipoPlanoAcao tipo = new TipoPlanoAcao(nome, prioridade);
+        printer.soutln("Escolha a prioridade:");
+        PrioridadeTipoPlanoAcaoEnum prioridade = handleEnum(PrioridadeTipoPlanoAcaoEnum.class);
 
+        printer.soutln("Escolha um grupo:");
+        GrupoPlanoAcaoEnum grupo = handleEnum(GrupoPlanoAcaoEnum.class);
+
+        TipoPlanoAcao tipo = new TipoPlanoAcao(nome, prioridade, grupo);
         db.getTiposPlanoAcao().put(tipo.getId(), tipo);
 
         printer.soutln("Tipo de plano de ação cadastrado com sucesso!");
         back();
     }
 
-    private PrioridadeTipoPlanoAcaoEnum handlePrioridade() {
-
-        int prioridade;
+    private <T extends Enum<T>> T handleEnum(Class<T> enumClass) {
+        List<T> options = List.of(enumClass.getEnumConstants());
+        int op = 0;
 
         do {
-            printer.soutln("Prioridade: ");
-            printer.soutln("1 - " + PrioridadeTipoPlanoAcaoEnum.ALTA);
-            printer.soutln("2 - " + PrioridadeTipoPlanoAcaoEnum.MEDIA);
-            printer.soutln("Opção: ");
-            prioridade = sc.nextInt();
+            for (int i = 0; i < options.size(); i++) {
+                printer.soutln((i + 1) + " - " + options.get(i));
+            }
+            printer.sout("Opção: ");
+            op = sc.nextInt();
 
-            if(prioridade != 1 && prioridade != 2) {
+            if (op < 1 || op > options.size()) {
                 printer.soutln("Opção inválida! Tente novamente.");
             }
+        } while (op < 1 || op > options.size());
 
-        } while (prioridade != 1 && prioridade != 2);
-
-        return prioridade == 1 ? PrioridadeTipoPlanoAcaoEnum.ALTA :
-                                 PrioridadeTipoPlanoAcaoEnum.MEDIA;
+        return options.get(op - 1);
     }
 }

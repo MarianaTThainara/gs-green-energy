@@ -1,5 +1,6 @@
 package console.commands.app;
 
+import domain.enums.GrupoPlanoAcaoEnum;
 import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 import domain.enums.StatusValidacaoEnum;
 import domain.models.*;
@@ -25,7 +26,7 @@ public class ValidateActivityCommand implements CommandInterface {
         Usuario usuario = new Usuario("Maria", "Silva", 12345678901L, "maria@example.com", "senha123", null);
         Comunidade comunidade = new Comunidade("Comunidade Verde", "Focada em sustentabilidade", null);
 
-        TipoPlanoAcao tipoPlanoAcao = new TipoPlanoAcao("Economia de Energia", PrioridadeTipoPlanoAcaoEnum.ALTA);
+        TipoPlanoAcao tipoPlanoAcao = new TipoPlanoAcao("Economia de Energia", PrioridadeTipoPlanoAcaoEnum.ALTA, GrupoPlanoAcaoEnum.ENERGIA);
         PlanoAcao planoAcao = new PlanoAcao(tipoPlanoAcao, null, "Redução de Consumo", "20%", 75);
 
         ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(planoAcao, comunidade, usuario, 15, "Economia registrada");

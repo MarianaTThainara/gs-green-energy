@@ -38,7 +38,7 @@ public abstract class AppCommand implements CommandInterface {
         return selectItem(
                 tipos,
                 "Nenhum tipo de ação encontrado!",
-                t -> String.format("Nome: %s | Prioridade: %s", t.getNome(), t.getPrioridade()),
+                t -> String.format("Nome: %s | Prioridade: %s | Grupo: %s", t.getNome(), t.getPrioridade(), t.getGrupo()),
                 "Escolha um tipo de plano de ação (número): "
         );
     }
