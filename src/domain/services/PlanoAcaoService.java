@@ -26,7 +26,7 @@ public class PlanoAcaoService extends Service {
         switch (tipoPlano.getPrioridade()) {
             case ALTA:
                 return 10;
-            case MEDIA:
+            case BAIXA:
                 return 5;
             default:
                 return 0;

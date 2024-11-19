@@ -14,4 +14,20 @@ public class PlanoAcaoVoto extends Model {
         this.usuario = usuario;
         this.dataVoto = LocalDateTime.now();
     }
+
+    public PlanoAcao getPlanoAcao() {
+        return planoAcao;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public LocalDateTime getDataVoto() {
+        return dataVoto;
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
 }

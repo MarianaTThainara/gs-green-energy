@@ -75,4 +75,7 @@ public class PlanoAcao extends Model {
         this.dataAlteracao = dataAlteracao;
     }
 
+    public void setStatus(PlanoAcaoStatusEnum status) {
+        this.status = status;
+    }
 }

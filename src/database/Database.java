@@ -24,6 +24,7 @@ public class Database {
         this.estados = database.getEstados();
         this.usuarios = database.getUsuarios();
         this.comunidades = database.getComunidades();
+        this.tiposPlanoAcao = database.getTiposPlanosAcao();
     }
 
     public DatabaseSeeder getDatabase() {
