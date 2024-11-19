@@ -13,6 +13,7 @@ public class Usuario extends Model {
     private Long cpf;
     private HashMap<String, UsuarioEndereco> enderecos;
     private HashMap<String, Comunidade> comunidades;
+    private HashMap<String, PlanoAcao> planosAcao;
     private float creditosVerde;
     private double consumoAnterior = 0.0;
     private double consumoAtual = 0.0;
@@ -48,6 +49,10 @@ public class Usuario extends Model {
         return comunidades;
     }
 
+    public HashMap<String, PlanoAcao> getPlanosAcao() {
+        return planosAcao;
+    }
+
     public float getCreditosVerde() {
         return creditosVerde;
     }
@@ -64,6 +69,10 @@ public class Usuario extends Model {
 
     public void setConsumoAtual(double consumoAtual) { this.consumoAtual = consumoAtual; }
 
+    public void setPlanosAcao(HashMap<String, PlanoAcao> planosAcao) {
+        this.planosAcao = planosAcao;
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -75,4 +84,5 @@ public class Usuario extends Model {
                 ", enderecos=" + enderecos +
                 '}';
     }
+
 }

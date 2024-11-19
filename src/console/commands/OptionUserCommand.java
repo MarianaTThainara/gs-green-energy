@@ -48,7 +48,7 @@ public class OptionUserCommand {
     private CommandInterface choose(Usuario usuario) {
         switch (op) {
             case 1:
-                return new PlanoAcaoVotoCommand(sc, db);
+                return new PlanoAcaoVotoCommand(sc, db, usuario);
             case 2:
                 return new CompleteActivityCommand(sc, db, usuario); // Novo comando para completar atividade
             case 3:

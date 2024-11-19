@@ -1,11 +1,13 @@
 package domain.models;
 
+import domain.enums.PlanoAcaoStatusEnum;
+
 import java.time.LocalDateTime;
-import java.util.HashMap;
 
 public class PlanoAcao extends Model {
 
     private TipoPlanoAcao tipo;
+    private PlanoAcaoStatusEnum status;
     private Estado estado;
     private CronogramaExecucao cronograma;
     private String nome;
@@ -22,6 +24,7 @@ public class PlanoAcao extends Model {
         this.meta = meta;
         this.metaAdesaoMin = metaAdesaoMin;
         this.dataCriacao = LocalDateTime.now();
+        this.status = PlanoAcaoStatusEnum.EMABERTO;
     }
 
     public TipoPlanoAcao getTipo() {
@@ -42,6 +45,10 @@ public class PlanoAcao extends Model {
 
     public String getMeta() {
         return meta;
+    }
+
+    public PlanoAcaoStatusEnum getStatus() {
+        return status;
     }
 
     public float getMetaAdesaoMin() {

@@ -4,15 +4,14 @@ import console.Printer;
 import console.interfaces.CommandInterface;
 import database.Database;
 import domain.enums.CronogramaExecucaoStatusEnum;
-import domain.models.CronogramaExecucao;
-import domain.models.Estado;
-import domain.models.PlanoAcao;
-import domain.models.TipoPlanoAcao;
+import domain.enums.PlanoAcaoStatusEnum;
+import domain.models.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 public abstract class AppCommand implements CommandInterface {
@@ -55,8 +54,41 @@ public abstract class AppCommand implements CommandInterface {
         );
     }
 
-    protected PlanoAcao choosePlanoAcao(Database db) {
-        List<PlanoAcao> planosAcao = new ArrayList<>(db.getPlanosAcao().values());
+    protected Comunidade chooseComunidadeUsuario(Usuario usuario) {
+        List<Comunidade> estados = new ArrayList<>(usuario.getComunidades().values());
+
+        return selectItem(
+                estados,
+                "Nenhuma comunidade encontrada!",
+                e -> String.format("Nome: %s", e.getNome()),
+                "Escolha uma comunidade (número): "
+        );
+    }
+
+    protected PlanoAcao choosePlanoAcao(Database db, Estado estado) {
+        List<PlanoAcao> planosAcao = new ArrayList<>(db.getPlanosAcao().values().stream().filter(
+                plano -> Objects.equals(plano.getEstado().getNome(), estado.getNome()) &&
+                        plano.getStatus() == PlanoAcaoStatusEnum.EMABERTO
+        ).toList());
+
+        return selectItem(
+                planosAcao,
+                "Nenhum plano de ação encontrado!",
+                plano -> String.format(
+                        "Tipo: %s | Estado: %s | Plano: %s | Meta: %s | Meta adesão mínima: %.2f",
+                        plano.getTipo().getNome(),
+                        plano.getEstado().getSigla(),
+                        plano.getNome(),
+                        plano.getMeta(),
+                        plano.getMetaAdesaoMin()
+                ),
+                "Escolha um plano de ação (número): "
+        );
+
+    }
+
+    protected PlanoAcao choosePlanoAcaoUsuario(Usuario usuario) {
+        List<PlanoAcao> planosAcao = new ArrayList<>(usuario.getPlanosAcao().values());
 
         return selectItem(
                 planosAcao,
