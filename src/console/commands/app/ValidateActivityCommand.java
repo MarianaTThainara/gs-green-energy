@@ -25,24 +25,30 @@ public class ValidateActivityCommand implements CommandInterface {
         Usuario usuario = new Usuario("Maria", "Silva", 12345678901L, "maria@example.com", "senha123", null);
         Comunidade comunidade = new Comunidade("Comunidade Verde", "Focada em sustentabilidade", null);
 
-
         TipoPlanoAcao tipoPlanoAcao = new TipoPlanoAcao("Economia de Energia", PrioridadeTipoPlanoAcaoEnum.ALTA);
         PlanoAcao planoAcao = new PlanoAcao(tipoPlanoAcao, null, "Redução de Consumo", "20%", 75);
 
-
         ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(planoAcao, comunidade, usuario, 15, "Economia registrada");
-        resultado.setImagemUrl("caminho/para/imagem.jpg");
 
+        // Anexos fake adicionados ao HashMap
+        AnexoResultadoPlanoAcao anexo1 = new AnexoResultadoPlanoAcao(resultado, "caminho/para/imagem1.jpg");
+        AnexoResultadoPlanoAcao anexo2 = new AnexoResultadoPlanoAcao(resultado, "caminho/para/imagem2.jpg");
+        resultado.addAnexo(anexo1);
+        resultado.addAnexo(anexo2);
 
+        // Simular a validação
         PlanoAcaoService planoAcaoService = new PlanoAcaoService();
 
+        System.out.println("Anexos associados à atividade:");
+        for (AnexoResultadoPlanoAcao anexo : resultado.getAnexos().values()) {
+            System.out.println("ID: " + anexo.getId() + " | URL: " + anexo.getUrl() + " | Data de Envio: " + anexo.getDataEnvio());
+        }
 
         boolean isAprovado = chooseApproval();
         planoAcaoService.validarAtividade(usuario, resultado, isAprovado);
 
-
         System.out.println("Status de Validação: " + resultado.getStatusValidacao());
-        System.out.println("Créditos do Usuário: " + usuario.getNome() + " - Créditos: " + usuario.toString());
+        System.out.println("Créditos do Usuário: " + usuario.getNome() + " - Créditos: " + usuario.getCreditosVerde());
     }
 
     private boolean chooseApproval() {
@@ -64,3 +70,4 @@ public class ValidateActivityCommand implements CommandInterface {
         return escolha;
     }
 }
+
