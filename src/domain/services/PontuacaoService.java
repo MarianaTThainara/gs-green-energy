@@ -4,12 +4,9 @@ import domain.models.Comunidade;
 import domain.models.Usuario;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class PontuacaoService {
 
-    private static final int PONTOS_PRIORIDADE_ALTA = 10;
-    private static final int PONTOS_PRIORIDADE_MEDIA = 5;
     private static final Map<Integer, Integer> PONTOS_RANKING_COMUNIDADES = Map.of(
             1, 500, // Primeira posição no ranking
             2, 300, // Segunda posição no ranking
@@ -17,14 +14,34 @@ public class PontuacaoService {
     );
     private static final int PONTOS_PARTICIPACAO_COMUNIDADE = 100; // Comunidades fora do top 3
 
-    public void pontuarAtividade(Usuario usuario, String prioridade) {
-        int pontos = switch (prioridade.toUpperCase()) {
-            case "ALTA" -> PONTOS_PRIORIDADE_ALTA;
-            case "MEDIA" -> PONTOS_PRIORIDADE_MEDIA;
-            default -> 0;
-        };
+    // Calcula o ranking das comunidades com base no maior número de atividades validadas e no menor consumo de energia.
 
-        usuario.setCreditosVerde(usuario.getCreditosVerde() + pontos);
+    public List<Map.Entry<Comunidade, Double>> calcularRanking(Map<String, Comunidade> comunidades) {
+        Map<Comunidade, Double> rankingValues = new HashMap<>();
+
+        for (Comunidade comunidade : comunidades.values()) {
+            int atividadesValidadas = calcularAtividadesValidadas(comunidade);
+            double consumoTotal = calcularConsumoTotal(comunidade);
+
+            // Fórmula: maior número de atividades validadas / menor consumo
+            double rankingValue = atividadesValidadas / (consumoTotal + 1); // +1 evita divisão por zero
+            rankingValues.put(comunidade, rankingValue);
+        }
+
+        // Ordena comunidades por valor de rankeamento em ordem decrescente
+        return rankingValues.entrySet().stream()
+                .sorted(Map.Entry.<Comunidade, Double>comparingByValue().reversed())
+                .toList();
+    }
+
+    //Distribui os pontos para os usuários das comunidades com base na posição no ranking.
+
+    public void distribuirPontosRanking(List<Map.Entry<Comunidade, Double>> ranking) {
+        for (int i = 0; i < ranking.size(); i++) {
+            Comunidade comunidade = ranking.get(i).getKey();
+            int pontosPorUsuario = PONTOS_RANKING_COMUNIDADES.getOrDefault(i + 1, PONTOS_PARTICIPACAO_COMUNIDADE);
+            distribuirPontosPorUsuario(comunidade, pontosPorUsuario);
+        }
     }
 
     private void distribuirPontosPorUsuario(Comunidade comunidade, int pontosPorUsuario) {
@@ -33,39 +50,17 @@ public class PontuacaoService {
         }
     }
 
-    public void distribuirPontosRanking(List<Comunidade> comunidadesRanking) {
-        for (int i = 0; i < comunidadesRanking.size(); i++) {
-            Comunidade comunidade = comunidadesRanking.get(i);
-            int pontosPorUsuario = PONTOS_RANKING_COMUNIDADES.getOrDefault(i + 1, PONTOS_PARTICIPACAO_COMUNIDADE);
-            distribuirPontosPorUsuario(comunidade, pontosPorUsuario);
-        }
+    public int calcularAtividadesValidadas(Comunidade comunidade) {
+        return comunidade.getUsuarios().stream()
+                .mapToInt(usuario -> (int) usuario.getResultados().stream()
+                        .filter(resultado -> resultado.getStatusValidacao() != null && resultado.getStatusValidacao().toString().equals("APROVADO"))
+                        .count())
+                .sum();
     }
 
-    public List<Comunidade> calcularRankingEconomia(Map<String, Comunidade> comunidades) {
-        Map<Comunidade, Double> economias = new HashMap<>();
-
-        for (Comunidade comunidade : comunidades.values()) {
-            double consumoAnteriorTotal = 0.0;
-            double consumoAtualTotal = 0.0;
-
-            // Soma os consumos de todos os usuários da comunidade
-            for (Usuario usuario : comunidade.getUsuarios()) {
-                consumoAnteriorTotal += usuario.getConsumoAnterior();
-                consumoAtualTotal += usuario.getConsumoAtual();
-            }
-
-            // Calcula a economia percentual
-            double economia = consumoAnteriorTotal > 0
-                    ? ((consumoAnteriorTotal - consumoAtualTotal) / consumoAnteriorTotal) * 100
-                    : 0; // Se não houver consumo anterior, economia é 0
-
-            economias.put(comunidade, economia);
-        }
-
-        // Ordena comunidades por economia em ordem decrescente
-        return economias.entrySet().stream()
-                .sorted(Map.Entry.<Comunidade, Double>comparingByValue().reversed())
-                .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+    public double calcularConsumoTotal(Comunidade comunidade) {
+        return comunidade.getUsuarios().stream()
+                .mapToDouble(Usuario::getConsumoAtual)
+                .sum();
     }
 }

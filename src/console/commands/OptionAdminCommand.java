@@ -69,7 +69,7 @@ public class OptionAdminCommand {
         printer.soutln("|  2  | Cadastrar cronograma de execução     |");
         printer.soutln("|  3  | Cadastrar planos de ação             |");
         printer.soutln("|  4  | Validar atividade                    |");
-        printer.soutln("|  5  | Exibir ranking de comunidades        |");
+        printer.soutln("|  5  | Exibir ranking de comunidades         |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");

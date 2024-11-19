@@ -5,6 +5,7 @@ import domain.models.Comunidade;
 import domain.services.PontuacaoService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ExibirRankingCommand extends AppCommand {
@@ -15,18 +16,32 @@ public class ExibirRankingCommand extends AppCommand {
 
     @Override
     public void run() {
-        printer.banner("Ranking de Economia por Comunidade");
+        printer.banner("Ranking de Comunidades");
 
         PontuacaoService pontuacaoService = new PontuacaoService();
-        List<Comunidade> rankingEconomia = pontuacaoService.calcularRankingEconomia(db.getComunidades());
+        List<Map.Entry<Comunidade, Double>> ranking = pontuacaoService.calcularRanking(db.getComunidades());
 
         int posicao = 1;
-        for (Comunidade comunidade : rankingEconomia) {
-            printer.soutln(posicao + "º lugar: " + comunidade.getNome());
+        for (Map.Entry<Comunidade, Double> entry : ranking) {
+            Comunidade comunidade = entry.getKey();
+            double rankingValue = entry.getValue();
+
+            int atividadesValidadas = pontuacaoService.calcularAtividadesValidadas(comunidade);
+            double consumoTotal = pontuacaoService.calcularConsumoTotal(comunidade);
+
+            printer.soutln(String.format(
+                    "%dº lugar: %s | %s | Atividades Validadas: %d | Consumo Total: %.2f kWh | Ranking Value: %.2f",
+                    posicao,
+                    comunidade.getNome(),
+                    comunidade.getBairro().getCidade().getNome(),
+                    atividadesValidadas,
+                    consumoTotal,
+                    rankingValue
+            ));
+
             posicao++;
         }
 
         back();
     }
 }
-

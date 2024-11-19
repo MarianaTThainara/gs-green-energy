@@ -4,6 +4,7 @@ import console.Printer;
 import console.commands.app.CompleteActivityCommand;
 import console.commands.app.PlanoAcaoVotoCommand;
 import console.commands.app.RegistrarConsumoCommand;
+import console.commands.app.ExibirRankingCommand;
 import console.interfaces.CommandInterface;
 import database.Database;
 import domain.models.Usuario;
@@ -53,6 +54,8 @@ public class OptionUserCommand {
                 return new CompleteActivityCommand(sc, db, usuario); // Novo comando para completar atividade
             case 3:
                 return new RegistrarConsumoCommand(sc, db);
+            case 4:
+                return new ExibirRankingCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -70,6 +73,7 @@ public class OptionUserCommand {
         printer.soutln("|  1  | Votar em um plano de ação            |");
         printer.soutln("|  2  | Completar uma atividade              |"); // Nova opção para completar atividade
         printer.soutln("|  3  | Registrar consumo de energia         |");
+        printer.soutln("|  4  | Visualizar ranking de comunidades     |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");

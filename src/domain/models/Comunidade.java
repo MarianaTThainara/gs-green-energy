@@ -36,7 +36,15 @@ public class Comunidade extends Model {
         return dataCadastro;
     }
 
-    public List<Usuario> getUsuarios() { return usuarios; }
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
 
-    public void setUsuarios(List<Usuario> usuarios) { this.usuarios = usuarios; }
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public void addUsuario(Usuario usuario) {
+        this.usuarios.add(usuario);
+    }
 }

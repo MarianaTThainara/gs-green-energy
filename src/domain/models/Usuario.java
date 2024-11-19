@@ -1,8 +1,7 @@
 package domain.models;
 
-import domain.repositories.Repository;
-
 import java.util.HashMap;
+import java.util.List;
 
 public class Usuario extends Model {
 
@@ -17,6 +16,7 @@ public class Usuario extends Model {
     private float creditosVerde;
     private double consumoAnterior = 0.0;
     private double consumoAtual = 0.0;
+    private List<ResultadoPlanoAcao> resultados; // Lista de resultados de atividades
 
     public Usuario(String nome, String sobrenome, Long cpf, String email, String senha, HashMap<String, UsuarioEndereco> enderecos) {
         this.nome = nome;
@@ -26,6 +26,7 @@ public class Usuario extends Model {
         this.senha = senha;
         this.enderecos = enderecos;
         this.comunidades = new HashMap<>();
+        this.planosAcao = new HashMap<>();
         this.creditosVerde = 0f;
     }
 
@@ -61,16 +62,36 @@ public class Usuario extends Model {
         this.creditosVerde = creditosVerde;
     }
 
-    public double getConsumoAnterior() { return consumoAnterior; }
+    public double getConsumoAnterior() {
+        return consumoAnterior;
+    }
 
-    public void setConsumoAnterior(double consumoAnterior) { this.consumoAnterior = consumoAnterior; }
+    public void setConsumoAnterior(double consumoAnterior) {
+        this.consumoAnterior = consumoAnterior;
+    }
 
-    public double getConsumoAtual() { return consumoAtual; }
+    public double getConsumoAtual() {
+        return consumoAtual;
+    }
 
-    public void setConsumoAtual(double consumoAtual) { this.consumoAtual = consumoAtual; }
+    public void setConsumoAtual(double consumoAtual) {
+        this.consumoAtual = consumoAtual;
+    }
 
     public void setPlanosAcao(HashMap<String, PlanoAcao> planosAcao) {
         this.planosAcao = planosAcao;
+    }
+
+    public List<ResultadoPlanoAcao> getResultados() {
+        return resultados;
+    }
+
+    public void setResultados(List<ResultadoPlanoAcao> resultados) {
+        this.resultados = resultados;
+    }
+
+    public void addResultado(ResultadoPlanoAcao resultado) {
+        this.resultados.add(resultado);
     }
 
     @Override
@@ -84,5 +105,5 @@ public class Usuario extends Model {
                 ", enderecos=" + enderecos +
                 '}';
     }
-
 }
+
