@@ -25,6 +25,7 @@ public class Database {
         this.usuarios = database.getUsuarios();
         this.comunidades = database.getComunidades();
         this.tiposPlanoAcao = database.getTiposPlanosAcao();
+        this.cronogramas = database.getCronogramas();
     }
 
     public DatabaseSeeder getDatabase() {

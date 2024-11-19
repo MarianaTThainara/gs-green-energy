@@ -1,10 +1,7 @@
 package database.seeders;
 
 import database.interfaces.DatabaseSeederInterface;
-import domain.models.Comunidade;
-import domain.models.Estado;
-import domain.models.TipoPlanoAcao;
-import domain.models.Usuario;
+import domain.models.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -18,6 +15,7 @@ public class DatabaseSeeder {
     private Map<String, Usuario> usuarios;
     private Map<String, Comunidade> comunidades;
     private Map<String, TipoPlanoAcao> tiposPlanosAcao;
+    private Map<String, CronogramaExecucao> cronogramas;
 
     private DatabaseSeeder() {
         seed();
@@ -35,6 +33,7 @@ public class DatabaseSeeder {
         this.comunidades = (new ComunidadeSeeder(estados)).seed();
         this.usuarios = (new UsuarioSeeder(comunidades)).seed();
         this.tiposPlanosAcao = (new TipoPlanoAcaoSeeder()).seed();
+        this.cronogramas = (new CronogramaExecucaoSeeder(estados)).seed();
     }
 
     public Map<String, Estado> getEstados() {
@@ -51,5 +50,9 @@ public class DatabaseSeeder {
 
     public Map<String, TipoPlanoAcao> getTiposPlanosAcao() {
         return Collections.unmodifiableMap(tiposPlanosAcao);
+    }
+
+    public Map<String, CronogramaExecucao> getCronogramas() {
+        return cronogramas;
     }
 }
