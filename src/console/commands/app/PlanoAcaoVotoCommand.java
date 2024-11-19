@@ -2,6 +2,7 @@ package console.commands.app;
 
 import database.Database;
 import domain.models.CronogramaExecucao;
+import domain.models.PlanoAcao;
 import domain.models.PlanoAcaoVoto;
 import domain.models.Usuario;
 
@@ -16,15 +17,17 @@ public class PlanoAcaoVotoCommand extends AppCommand {
     public void run() {
         printer.banner("Votar em um plano de ação");
 
-        CronogramaExecucao cronograma = chooseCronogramaExecucao(db);
-        if(cronograma == null) { back(); return; }
+        Usuario usuario = db.getUsuarios().values().iterator().next();
 
-//        PlanoAcaoVoto voto = new PlanoAcaoVoto(
-//                cronograma,
-//                Usuario
-//        );
-//
-//        db.getVotos().put(voto);
+        PlanoAcao planoAcao = choosePlanoAcao(db);
+        if(planoAcao == null) { back(); return; }
+
+        PlanoAcaoVoto voto = new PlanoAcaoVoto(
+                planoAcao,
+                usuario
+        );
+
+        db.getVotos().put(voto.getId(), voto);
 
         printer.soutln("Voto computado com sucesso!");
         back();
