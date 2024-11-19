@@ -23,6 +23,7 @@ public class PlanoAcaoVotoCommand extends AppCommand {
         printer.banner("Votar em um plano de ação");
 
         Comunidade comunidade = chooseComunidadeUsuario(usuario);
+        if(comunidade == null) { back(); return; }
 
         PlanoAcao planoAcao = choosePlanoAcao(db, comunidade.getBairro().getCidade().getEstado());
         if(planoAcao == null) { back(); return; }

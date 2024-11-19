@@ -45,21 +45,23 @@ public class PontuacaoService {
     }
 
     private void distribuirPontosPorUsuario(Comunidade comunidade, int pontosPorUsuario) {
-        for (Usuario usuario : comunidade.getUsuarios()) {
+        List<Usuario> usuarios = comunidade.getUsuarios().values().stream().toList();
+
+        for (Usuario usuario : usuarios) {
             usuario.setCreditosVerde(usuario.getCreditosVerde() + pontosPorUsuario);
         }
     }
 
     public int calcularAtividadesValidadas(Comunidade comunidade) {
-        return comunidade.getUsuarios().stream()
-                .mapToInt(usuario -> (int) usuario.getResultados().stream()
+        return comunidade.getUsuarios().values().stream()
+                .mapToInt(usuario -> (int) usuario.getResultados().values().stream()
                         .filter(resultado -> resultado.getStatusValidacao() != null && resultado.getStatusValidacao().toString().equals("APROVADO"))
                         .count())
                 .sum();
     }
 
     public double calcularConsumoTotal(Comunidade comunidade) {
-        return comunidade.getUsuarios().stream()
+        return comunidade.getUsuarios().values().stream()
                 .mapToDouble(Usuario::getConsumoAtual)
                 .sum();
     }

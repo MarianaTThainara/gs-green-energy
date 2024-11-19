@@ -27,7 +27,9 @@ public class ComunidadeSeeder implements DatabaseSeederInterface<Comunidade> {
         Comunidade comunidade = this.getComunidade(bairro);
 
         // Users ficticios associados a comunidade
-        comunidade.setUsuarios(getUsuariosFicticios(bairro));
+        for(Usuario usuario : getUsuariosFicticios(bairro)) {
+            comunidade.getUsuarios().put(usuario.getId(), usuario);
+        }
 
         comunidades.put(comunidade.getId(), comunidade);
 

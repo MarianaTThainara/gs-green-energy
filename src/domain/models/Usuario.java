@@ -16,7 +16,7 @@ public class Usuario extends Model {
     private float creditosVerde;
     private double consumoAnterior = 0.0;
     private double consumoAtual = 0.0;
-    private List<ResultadoPlanoAcao> resultados; // Lista de resultados de atividades
+    private HashMap<String, ResultadoPlanoAcao> resultados; // Lista de resultados de atividades
 
     public Usuario(String nome, String sobrenome, Long cpf, String email, String senha, HashMap<String, UsuarioEndereco> enderecos) {
         this.nome = nome;
@@ -28,6 +28,7 @@ public class Usuario extends Model {
         this.comunidades = new HashMap<>();
         this.planosAcao = new HashMap<>();
         this.creditosVerde = 0f;
+        this.resultados = new HashMap<>();
     }
 
     public String getNome() {
@@ -82,16 +83,12 @@ public class Usuario extends Model {
         this.planosAcao = planosAcao;
     }
 
-    public List<ResultadoPlanoAcao> getResultados() {
+    public HashMap<String, ResultadoPlanoAcao> getResultados() {
         return resultados;
     }
 
-    public void setResultados(List<ResultadoPlanoAcao> resultados) {
-        this.resultados = resultados;
-    }
-
-    public void addResultado(ResultadoPlanoAcao resultado) {
-        this.resultados.add(resultado);
+    public HashMap<String, UsuarioEndereco> getEnderecos() {
+        return enderecos;
     }
 
     @Override
@@ -105,5 +102,6 @@ public class Usuario extends Model {
                 ", enderecos=" + enderecos +
                 '}';
     }
+
 }
 
