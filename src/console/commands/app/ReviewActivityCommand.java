@@ -6,6 +6,8 @@ import domain.models.AnexoResultadoPlanoAcao;
 import domain.models.ResultadoPlanoAcao;
 import domain.services.PlanoAcaoService;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -20,15 +22,19 @@ public class ReviewActivityCommand extends AppCommand {
 
     @Override
     public void run() {
-        System.out.println("Atividades pendentes de validação:");
+        printer.banner("Atividades pendentes de avaliação");
 
-        for (Map.Entry<String, ResultadoPlanoAcao> entry : db.getResultadosPlanosAcao().entrySet()) {
-            ResultadoPlanoAcao resultado = entry.getValue();
+        var resultadosPlanosAcao = db.getResultadosPlanosAcao().values().stream().filter(
+                r -> r.getStatusValidacao() != StatusValidacaoEnum.AGUARDANDO
+        ).toList();
 
-            if(resultado.getStatusValidacao() != null) {
-                continue;
-            }
+        if(resultadosPlanosAcao.isEmpty()) {
+            printer.soutln("Nenhum resultado do plano de ação encontrado!");
+            back();
+            return;
+        }
 
+        for (ResultadoPlanoAcao resultado : resultadosPlanosAcao) {
             printer.soutln("ID: " + resultado.getId());
             printer.soutln("Plano: " + resultado.getPlanoAcao().getNome());
             printer.soutln("Usuário: " + resultado.getUsuario().getNome());

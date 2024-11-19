@@ -22,6 +22,7 @@ public class ResultadoPlanoAcao extends Model {
         this.comunidade = comunidade;
         this.usuario = usuario;
         this.anexos = new HashMap<>();
+        this.statusValidacao = StatusValidacaoEnum.AGUARDANDO;
     }
 
     public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float ecoEnergia) {
