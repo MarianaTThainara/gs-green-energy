@@ -72,8 +72,8 @@ public class OptionUserCommand {
         printer.soutln("----------------------------------------------");
         printer.soutln("|  1  | Visualizar dados pessoais            |");
         printer.soutln("|  2  | Votar em um plano de ação            |");
-        printer.soutln("|  3  | Completar uma atividade              |");
-        printer.soutln("|  4  | Visualizar ranking de comunidades     |");
+        printer.soutln("|  3  | Completar plano de ação              |");
+        printer.soutln("|  4  | Visualizar ranking de comunidades    |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");

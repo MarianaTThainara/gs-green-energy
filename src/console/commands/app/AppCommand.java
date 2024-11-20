@@ -56,12 +56,15 @@ public abstract class AppCommand implements CommandInterface {
     }
 
     protected Comunidade chooseComunidadeUsuario(Usuario usuario) {
-        List<Comunidade> estados = new ArrayList<>(usuario.getComunidades().values());
+        List<Comunidade> comunidades = new ArrayList<>(usuario.getComunidades().values());
 
         return selectItem(
-                estados,
+                comunidades,
                 "Nenhuma comunidade encontrada!",
-                e -> String.format("Nome: %s", e.getNome()),
+                e -> String.format(
+                        "Nome: %s | Bairro: %s | Cidade: %s",
+                        e.getNome(), e.getBairro().getNome(), e.getBairro().getCidade().getNome()
+                ),
                 "Escolha uma comunidade (número): "
         );
     }
@@ -89,7 +92,9 @@ public abstract class AppCommand implements CommandInterface {
     }
 
     protected PlanoAcao choosePlanoAcaoUsuario(Usuario usuario) {
-        List<PlanoAcao> planosAcao = new ArrayList<>(usuario.getPlanosAcao().values());
+        List<PlanoAcao> planosAcao = new ArrayList<>(usuario.getPlanosAcao().values().stream().filter(
+                planoAcao -> planoAcao.getStatus() == PlanoAcaoStatusEnum.APROVADO
+        ).toList());
 
         return selectItem(
                 planosAcao,

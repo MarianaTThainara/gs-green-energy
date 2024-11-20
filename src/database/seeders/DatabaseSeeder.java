@@ -51,7 +51,7 @@ public class DatabaseSeeder {
     }
 
     public Map<String, TipoPlanoAcao> getTiposPlanosAcao() {
-        return Collections.unmodifiableMap(tiposPlanosAcao);
+        return tiposPlanosAcao;
     }
 
     public Map<String, CronogramaExecucao> getCronogramas() {
