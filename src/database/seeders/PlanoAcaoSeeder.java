@@ -40,17 +40,17 @@ public class PlanoAcaoSeeder implements DatabaseSeederInterface<PlanoAcao> {
                 new PlanoAcao(
                         tiposPlanosAcao.get("Redução do consumo de energia"),
                         cronograma,
-                        "Sempre dentro do possível!!",
-                        "Redução do consumo de energia em 15%",
-                        15,
+                        "Poupando a energia",
+                        "Redução do consumo de energia em 150kWh",
+                        150,
                         1785
                         ),
                 new PlanoAcao(
                         tiposPlanosAcao.get("Instalar chuveiros solares em áreas comuns"),
                         cronograma,
                         "Banho quente",
-                        "Criar um chuveiro externo para a família sem utilizar energia elétrica",
-                        5,
+                        "Criar um chuveiro solar para a família sem utilizar energia elétrica",
+                        1,
                         225
                         )
         );

@@ -15,6 +15,6 @@ public class GrupoEnergiaTipoPlanoAcaoService extends Service implements GrupoTi
     @Override
     public float getData() {
         EmpresaEnergiaApi api = new EmpresaEnergiaApi(usuario.getCpf());
-        return api.fetch();
+        return (float) api.fetch();
     }
 }
