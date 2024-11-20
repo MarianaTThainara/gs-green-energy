@@ -2,6 +2,7 @@ package console.commands.app.admin;
 
 import console.commands.app.AppCommand;
 import database.Database;
+import domain.enums.CronogramaExecucaoStatusEnum;
 import domain.enums.PlanoAcaoStatusEnum;
 import domain.enums.StatusValidacaoEnum;
 import domain.models.Estado;
@@ -48,11 +49,16 @@ public class JobClosePlanoAcaoCommand extends AppCommand  {
             }
 
             planoAcao.setStatus(PlanoAcaoStatusEnum.FINALIZADO);
+            planoAcao.getCronograma().setStatus(CronogramaExecucaoStatusEnum.FINALIZADO);
             db.getPlanosAcao().put(planoAcao.getId(), planoAcao);
+            db.getCronogramas().put(planoAcao.getCronograma().getId(), planoAcao.getCronograma());
 
             db.getUsuarios().forEach(
                     (s, usuario) -> usuario.getPlanosAcao().forEach(
-                            (s1, planoAcao1) -> planoAcao1.setStatus(PlanoAcaoStatusEnum.FINALIZADO)
+                            (s1, planoAcao1) -> {
+                                planoAcao1.setStatus(PlanoAcaoStatusEnum.FINALIZADO);
+                                planoAcao1.getCronograma().setStatus(CronogramaExecucaoStatusEnum.FINALIZADO);
+                            }
                     )
             );
 

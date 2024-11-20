@@ -1,5 +1,6 @@
 package domain.enums;
 
 public enum CronogramaExecucaoStatusEnum {
-    EMABERTO
+    EMABERTO,
+    FINALIZADO
 }
