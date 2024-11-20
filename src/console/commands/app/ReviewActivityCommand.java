@@ -25,7 +25,7 @@ public class ReviewActivityCommand extends AppCommand {
         printer.banner("Atividades pendentes de avaliação");
 
         var resultadosPlanosAcao = db.getResultadosPlanosAcao().values().stream().filter(
-                r -> r.getStatusValidacao() != StatusValidacaoEnum.AGUARDANDO
+                r -> r.getStatusValidacao() == StatusValidacaoEnum.AGUARDANDO
         ).toList();
 
         if(resultadosPlanosAcao.isEmpty()) {
@@ -60,5 +60,7 @@ public class ReviewActivityCommand extends AppCommand {
             resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
             printer.soutln("Atividade rejeitada. Usuário será notificado para reenviar.");
         }
+
+        back();
     }
 }

@@ -11,8 +11,7 @@ public class ResultadoPlanoAcao extends Model {
     private Comunidade comunidade;
     private Usuario usuario;
     private LocalDateTime dataConclusao;
-    private float ecoEnergia;
-    private int qtdDisp;
+    private float adesao;
     private String observacoes;
     private StatusValidacaoEnum statusValidacao;
     private HashMap<String, AnexoResultadoPlanoAcao> anexos;
@@ -25,25 +24,14 @@ public class ResultadoPlanoAcao extends Model {
         this.statusValidacao = StatusValidacaoEnum.AGUARDANDO;
     }
 
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float ecoEnergia) {
+    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float adesao) {
         this(planoAcao, comunidade, usuario);
-        this.ecoEnergia = ecoEnergia;
+        this.adesao = adesao;
     }
 
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, int qtdDisp) {
+    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, float adesao, String observacoes) {
         this(planoAcao, comunidade, usuario);
-        this.qtdDisp = qtdDisp;
-    }
-
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Comunidade comunidade, Usuario usuario, float ecoEnergia, String observacoes) {
-        this(planoAcao, comunidade, usuario);
-        this.ecoEnergia = ecoEnergia;
-        this.observacoes = observacoes;
-    }
-
-    public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, int qtdDisp, String observacoes) {
-        this(planoAcao, comunidade, usuario);
-        this.qtdDisp = qtdDisp;
+        this.adesao = adesao;
         this.observacoes = observacoes;
     }
 
@@ -57,9 +45,7 @@ public class ResultadoPlanoAcao extends Model {
 
     public void setDataConclusao(LocalDateTime dataConclusao) { this.dataConclusao = dataConclusao; }
 
-    public float getEcoEnergia() { return ecoEnergia; }
-
-    public int getQtdDisp() { return qtdDisp; }
+    public float getAdesao() { return adesao; }
 
     public String getObservacoes() { return observacoes; }
 

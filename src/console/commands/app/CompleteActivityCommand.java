@@ -2,7 +2,10 @@ package console.commands.app;
 
 import console.interfaces.CommandInterface;
 import database.Database;
+import domain.enums.GrupoPlanoAcaoEnum;
+import domain.interfaces.GrupoTipoPlanoAcaoInterface;
 import domain.models.*;
+import domain.services.GrupoTipoPlanoAcaoService;
 
 import java.util.Scanner;
 
@@ -23,21 +26,33 @@ public class CompleteActivityCommand extends AppCommand {
     public void run() {
         printer.banner("Completar plano de ação");
 
+        Comunidade comunidade = chooseComunidadeUsuario(usuario);
+        if(comunidade == null) { back(); return; }
+
         PlanoAcao planoAcao = choosePlanoAcaoUsuario(usuario);
         if(planoAcao == null) { back(); return; }
 
-        System.out.print("Insira o caminho da imagem de comprovação: ");
-        String imagemUrl = sc.next(); // Simula o envio de imagem com uma string representando o caminho
+        System.out.print("Insira o caminho do documento de comprovação:");
+        String imagemUrl = sc.next();
 
-        // Cria um novo resultado de atividade para ser revisado pelo administrador
-        ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(planoAcao, usuario.getComunidades().values().iterator().next(), usuario, 0);
+        GrupoTipoPlanoAcaoService grupoService = new GrupoTipoPlanoAcaoService(
+                planoAcao.getTipo().getGrupo(), usuario, sc);
+
+        float adesao = grupoService.handle().getData();
+
+        ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(
+                planoAcao,
+                usuario,
+                comunidade,
+                adesao
+        );
 
         AnexoResultadoPlanoAcao anexo = new AnexoResultadoPlanoAcao(resultado, imagemUrl);
         resultado.getAnexos().put(anexo.getId(), anexo);
 
-        // Salva o resultado no banco de dados para que o administrador possa revisá-lo
         db.getResultadosPlanosAcao().put(resultado.getId(), resultado);
 
-        printer.soutln("Atividade registrada com sucesso. Aguardando validação do administrador.");
+        printer.soutln("Atividade enviada para análise com sucesso!");
+        back();
     }
 }

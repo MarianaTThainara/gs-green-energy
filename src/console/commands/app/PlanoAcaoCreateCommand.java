@@ -35,7 +35,10 @@ public class PlanoAcaoCreateCommand extends AppCommand {
         printer.sout("Define a meta de adesão mínima: ");
         float metaAdesaoMin = sc.nextFloat();
 
-        PlanoAcao plano = new PlanoAcao(tipo, cronogramaExecucao, nome, meta, metaAdesaoMin);
+        printer.sout("Recompensa créditos verdes: ");
+        float creditosVerdes = sc.nextFloat();
+
+        PlanoAcao plano = new PlanoAcao(tipo, cronogramaExecucao, nome, meta, metaAdesaoMin, creditosVerdes);
         db.getPlanosAcao().put(plano.getId(), plano);
 
         printer.soutln("Plano de ação cadastrado com sucesso!");

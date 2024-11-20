@@ -5,6 +5,7 @@ import console.interfaces.CommandInterface;
 import database.Database;
 import domain.enums.CronogramaExecucaoStatusEnum;
 import domain.enums.PlanoAcaoStatusEnum;
+import domain.enums.StatusValidacaoEnum;
 import domain.models.*;
 
 import java.time.LocalDate;
@@ -121,6 +122,23 @@ public abstract class AppCommand implements CommandInterface {
                         crono.getDataFimVotacao(),
                         crono.getDataInicioExe(),
                         crono.getDataFimExe()
+                ),
+                "Escolha um cronograma (número): "
+        );
+    }
+
+    protected ResultadoPlanoAcao chooseResultadoPlanoAcao(Database db) {
+        List<ResultadoPlanoAcao> resultados = db.getResultadosPlanosAcao().values().stream().filter(
+                resultado -> resultado.getStatusValidacao().equals(StatusValidacaoEnum.AGUARDANDO)
+        ).toList();
+
+        return selectItem(
+                resultados,
+                "Nenhuma pendência encontrada!",
+                res -> String.format(
+                        "Plano ação: %s | Usuário: %s",
+                        res.getPlanoAcao().getNome(),
+                        res.getUsuario().getNome()
                 ),
                 "Escolha um cronograma (número): "
         );

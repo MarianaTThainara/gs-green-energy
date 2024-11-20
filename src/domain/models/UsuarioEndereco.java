@@ -1,7 +1,5 @@
 package domain.models;
 
-import domain.repositories.Repository;
-
 public class UsuarioEndereco extends Model {
 
     private Bairro bairro;

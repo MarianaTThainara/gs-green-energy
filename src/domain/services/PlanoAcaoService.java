@@ -1,5 +1,7 @@
 package domain.services;
 
+import domain.enums.GrupoPlanoAcaoEnum;
+import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 import domain.enums.StatusValidacaoEnum;
 import domain.models.Usuario;
 import domain.models.ResultadoPlanoAcao;
@@ -10,7 +12,7 @@ public class PlanoAcaoService extends Service {
 
     public void validarAtividade(Usuario usuario, ResultadoPlanoAcao resultado, boolean isAprovado) {
         if (isAprovado) {
-            int pontos = calcularPontosPorPrioridade(resultado.getPlanoAcao().getTipo());
+            float pontos = calcularPontosPorPrioridade(resultado);
 
             usuario.setCreditosVerde(usuario.getCreditosVerde() + pontos);
             resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
@@ -22,14 +24,19 @@ public class PlanoAcaoService extends Service {
         System.out.println("A atividade não atende aos requisitos de validação. Por favor, revise e envie uma nova imagem.");
     }
 
-    private int calcularPontosPorPrioridade(TipoPlanoAcao tipoPlano) {
-        switch (tipoPlano.getPrioridade()) {
-            case ALTA:
-                return 10;
-            case BAIXA:
-                return 5;
-            default:
-                return 0;
+    private float calcularPontosPorPrioridade(ResultadoPlanoAcao resultado) {
+
+        PlanoAcao planoAcao = resultado.getPlanoAcao();
+
+        // Verifica se a adesão já atingiu a meta
+        if(resultado.getAdesao() > planoAcao.getMetaAdesaoMin()) {
+            return planoAcao.getCreditosVerdes();
         }
+
+        // Calcula a porcentagem que falta para atingir a meta de adesão
+        float percentualFaltante = (planoAcao.getMetaAdesaoMin() - resultado.getAdesao()) / planoAcao.getMetaAdesaoMin();
+
+        // Calcula os créditos verdes com base no percentual faltante
+        return planoAcao.getCreditosVerdes() * (1 - percentualFaltante);
     }
 }
