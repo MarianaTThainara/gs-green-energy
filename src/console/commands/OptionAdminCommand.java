@@ -58,6 +58,8 @@ public class OptionAdminCommand {
                 return new JobGerarResultadoPlanoAcaoVotoCommand(sc, db);
             case 10:
                 return new JobClosePlanoAcaoCommand(sc, db);
+            case 11:
+                return new DashboardCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -84,7 +86,9 @@ public class OptionAdminCommand {
         printer.soutln("|  9  | [JOB] Gerar resultado votação         |");
         printer.soutln("|  10 | [JOB] Fechar planos de ação           |");
         printer.soutln("----------------------------------------------");
-        printer.soutln("|  0  | Sair                                  |");
+        printer.soutln("|  11 | Dashboard                            |");
+        printer.soutln("----------------------------------------------");
+        printer.soutln("|  0  | Sair                                 |");
         printer.soutln("----------------------------------------------");
         printer.sout("Opção: ");
         op = sc.nextInt();
