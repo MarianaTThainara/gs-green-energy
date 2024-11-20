@@ -37,6 +37,7 @@ public class ReviewActivityCommand extends AppCommand {
             printer.soutln("ID: " + resultado.getId());
             printer.soutln("Plano: " + resultado.getPlanoAcao().getNome());
             printer.soutln("Usuário: " + resultado.getUsuario().getNome());
+            printer.soutln("CPF: " + resultado.getUsuario().getCpf());
 
             // Exibe todos os anexos relacionados à atividade
             printer.soutln("Anexos:");
@@ -45,11 +46,10 @@ public class ReviewActivityCommand extends AppCommand {
                 printer.soutln("  - Anexo ID: " + anexo.getId() + " | URL: " + anexo.getUrl() + " | Data de Envio: " + anexo.getDataEnvio());
             }
 
-            // Solicita aprovação ou rejeição do adm
-            printer.sout("Deseja aprovar a atividade? (1 para Sim, 2 para Não): ");
-            int escolha = sc.nextInt();
+            printer.sout("Deseja aprovar a atividade? (S/N): ");
+            String input = sc.next() + sc.nextLine();
 
-            if (escolha == 1) {
+            if (input.equals("S")) {
                 resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
                 planoAcaoService.validarAtividade(resultado.getUsuario(), resultado, true);
                 printer.soutln("Atividade aprovada. Pontos adicionados ao usuário.");
@@ -57,7 +57,8 @@ public class ReviewActivityCommand extends AppCommand {
             }
 
             resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
-            printer.soutln("Atividade rejeitada. Usuário será notificado para reenviar.");
+            printer.soutln("Atividade rejeitada. O usuário não receberá créditos verdes");
+            printer.soutln("");
         }
 
         back();

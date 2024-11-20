@@ -92,9 +92,13 @@ public abstract class AppCommand implements CommandInterface {
     }
 
     protected PlanoAcao choosePlanoAcaoUsuario(Usuario usuario) {
-        List<PlanoAcao> planosAcao = new ArrayList<>(usuario.getPlanosAcao().values().stream().filter(
-                planoAcao -> planoAcao.getStatus() == PlanoAcaoStatusEnum.APROVADO
-        ).toList());
+        List<PlanoAcao> planosAcao = usuario.getPlanosAcao().values().stream()
+                .filter(planoAcao -> planoAcao.getStatus() == PlanoAcaoStatusEnum.APROVADO)
+                .filter(planoAcao ->
+                        usuario.getResultados().values().stream()
+                                .noneMatch(resultado -> resultado.getPlanoAcao().equals(planoAcao))
+                )
+                .toList();
 
         return selectItem(
                 planosAcao,

@@ -2,6 +2,7 @@ package console.commands.app.user;
 
 import console.commands.app.AppCommand;
 import database.Database;
+import domain.enums.StatusValidacaoEnum;
 import domain.models.*;
 import domain.services.GrupoTipoPlanoAcaoService;
 
@@ -49,6 +50,8 @@ public class CompleteActivityCommand extends AppCommand {
         resultado.getAnexos().put(anexo.getId(), anexo);
 
         db.getResultadosPlanosAcao().put(resultado.getId(), resultado);
+        usuario.getResultados().put(resultado.getId(), resultado);
+        db.getUsuarios().put(usuario.getId(), usuario);
 
         printer.soutln("Atividade enviada para análise com sucesso!");
         back();
