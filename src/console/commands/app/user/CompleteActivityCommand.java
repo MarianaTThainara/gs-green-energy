@@ -30,7 +30,7 @@ public class CompleteActivityCommand extends AppCommand {
         PlanoAcao planoAcao = choosePlanoAcaoUsuario(usuario);
         if(planoAcao == null) { back(); return; }
 
-        System.out.print("Insira o caminho do documento de comprovação:");
+        System.out.print("Insira o caminho do documento de comprovação: ");
         String imagemUrl = sc.next();
 
         GrupoTipoPlanoAcaoService grupoService = new GrupoTipoPlanoAcaoService(

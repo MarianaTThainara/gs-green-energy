@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ResultadoPlanoAcaoVotoCommand extends AppCommand {
+public class GerarResultadoPlanoAcaoVotoCommand extends AppCommand {
 
-    public ResultadoPlanoAcaoVotoCommand(Scanner sc, Database db) {
+    public GerarResultadoPlanoAcaoVotoCommand(Scanner sc, Database db) {
         super(sc, db);
     }
 
@@ -21,27 +21,26 @@ public class ResultadoPlanoAcaoVotoCommand extends AppCommand {
     public void run() {
         printer.banner("Gerar resultado votação planos de ação");
 
-        List<PlanoAcao> planosAprovados = new ArrayList<>();
-        List<PlanoAcao> planosObrigatorios = new ArrayList();
+        ArrayList<PlanoAcaoVoto> votos =  new ArrayList<>(db.getVotos().values().stream().filter(
+                planoAcaoVoto -> planoAcaoVoto.getPlanoAcao().getStatus() == PlanoAcaoStatusEnum.EMABERTO
+        ).toList());
 
-        for (PlanoAcaoVoto voto : db.getVotos().values()) {
+        if(votos.isEmpty()) {
+            printer.sout("Nenhum plano de ação em aberto!");
+            back();
+            return;
+        }
+
+        List<PlanoAcao> planosAprovados = new ArrayList<>();
+
+        for (PlanoAcaoVoto voto : votos) {
             voto.getPlanoAcao().setStatus(PlanoAcaoStatusEnum.APROVADO);
 
             planosAprovados.add(voto.getPlanoAcao());
-
-            if (isPlanoAcaoObrigatorio(voto.getPlanoAcao())) {
-                planosObrigatorios.add(voto.getPlanoAcao());
-            }
         }
 
         printer.soutln("Planos de ação aprovados: ");
         for(PlanoAcao plano: planosAprovados) {
-            printer.soutln("Plano ação: " + plano.getNome());
-        }
-
-        printer.soutln("");
-        printer.soutln("Planos de ação obrigatórios: ");
-        for(PlanoAcao plano: planosObrigatorios) {
             printer.soutln("Plano ação: " + plano.getNome());
         }
 
@@ -62,9 +61,5 @@ public class ResultadoPlanoAcaoVotoCommand extends AppCommand {
         printer.soutln("");
         printer.soutln("Planos de ação não votados foram marcados como RECUSADOS.");
         back();
-    }
-
-    private boolean isPlanoAcaoObrigatorio(PlanoAcao planoAcao) {
-        return planoAcao.getTipo().getPrioridade().equals(PrioridadeTipoPlanoAcaoEnum.ALTA);
     }
 }

@@ -55,7 +55,7 @@ public class OptionAdminCommand {
             case 8:
                 return new ExibirRankingCommand(sc, db);
             case 9:
-                return new ResultadoPlanoAcaoVotoCommand(sc, db);
+                return new GerarResultadoPlanoAcaoVotoCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
