@@ -13,7 +13,6 @@ public class PlanoAcao extends Model {
     private String nome;
     private String meta;
     private float metaAdesaoMin;
-    private float metaCompletada;
     private float creditosVerdes;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAlteracao;
@@ -58,10 +57,6 @@ public class PlanoAcao extends Model {
         return metaAdesaoMin;
     }
 
-    public float getMetaCompletada() {
-        return metaCompletada;
-    }
-
     public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
@@ -72,10 +67,6 @@ public class PlanoAcao extends Model {
 
     public float getCreditosVerdes() {
         return creditosVerdes;
-    }
-
-    public void setMetaCompletada(float metaCompletada) {
-        this.metaCompletada = metaCompletada;
     }
 
     public void setDataAlteracao(LocalDateTime dataAlteracao) {

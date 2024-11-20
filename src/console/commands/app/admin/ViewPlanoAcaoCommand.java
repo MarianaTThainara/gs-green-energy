@@ -19,7 +19,7 @@ public class ViewPlanoAcaoCommand extends AppCommand {
 
         for(PlanoAcao plano : planosAcao) {
             System.out.printf(
-                    "Nome: %s | Tipo: %s | Status: %s | Estado: %s | Data início: %s | Meta: %s | Meta Adesão Mínima: %.2f | Meta Completada: %.2f | Créditos Verdes: %.2f | Data Criação: %s | Data Alteração: %s",
+                    "Nome: %s | Tipo: %s | Status: %s | Estado: %s | Data início: %s | Meta: %s | Meta Adesão Mínima: %.2f | Créditos Verdes: %.2f | Data Criação: %s | Data Alteração: %s",
                     plano.getNome(),
                     plano.getTipo().getNome(),
                     plano.getStatus(),
@@ -27,7 +27,6 @@ public class ViewPlanoAcaoCommand extends AppCommand {
                     plano.getCronograma().getDataInicioExe(),
                     plano.getMeta(),
                     plano.getMetaAdesaoMin(),
-                    plano.getMetaCompletada(),
                     plano.getCreditosVerdes(),
                     plano.getDataCriacao(),
                     plano.getDataAlteracao()
