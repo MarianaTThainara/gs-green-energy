@@ -39,6 +39,8 @@ public class CompleteActivityCommand extends AppCommand {
 
         float adesao = grupoService.handle().getData();
 
+        usuario.setConsumoAtual(adesao);
+
         ResultadoPlanoAcao resultado = new ResultadoPlanoAcao(
                 planoAcao,
                 usuario,

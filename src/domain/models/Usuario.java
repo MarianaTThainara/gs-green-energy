@@ -15,7 +15,6 @@ public class Usuario extends Model {
     private HashMap<String, Comunidade> comunidades;
     private HashMap<String, PlanoAcao> planosAcao;
     private float creditosVerde;
-    private double consumoAnterior = 0.0;
     private double consumoAtual = 0.0;
     private HashMap<String, ResultadoPlanoAcao> resultados;
     private List<CompraProdutoVerdeUsuario> produtos;
@@ -27,9 +26,9 @@ public class Usuario extends Model {
         this.cpf = cpf;
         this.senha = senha;
         this.enderecos = enderecos;
+        this.creditosVerde = 0f;
         this.comunidades = new HashMap<>();
         this.planosAcao = new HashMap<>();
-        this.creditosVerde = 0f;
         this.resultados = new HashMap<>();
         this.produtos = new ArrayList<>();
     }
@@ -64,14 +63,6 @@ public class Usuario extends Model {
 
     public void setCreditosVerde(float creditosVerde) {
         this.creditosVerde = creditosVerde;
-    }
-
-    public double getConsumoAnterior() {
-        return consumoAnterior;
-    }
-
-    public void setConsumoAnterior(double consumoAnterior) {
-        this.consumoAnterior = consumoAnterior;
     }
 
     public double getConsumoAtual() {
