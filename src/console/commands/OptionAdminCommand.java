@@ -44,14 +44,16 @@ public class OptionAdminCommand {
             case 3:
                 return new CronogramaExecucaoCreateCommand(sc, db);
             case 4:
-                return new ViewCronogramaExecucao(sc, db);
+                return new ViewCronogramaExecucaoCommand(sc, db);
             case 5:
                 return new PlanoAcaoCreateCommand(sc, db);
             case 6:
-                return new ReviewActivityCommand(sc, db);
+                return new ViewPlanoAcaoCommand(sc, db);
             case 7:
-                return new ExibirRankingCommand(sc, db);
+                return new ReviewActivityCommand(sc, db);
             case 8:
+                return new ExibirRankingCommand(sc, db);
+            case 9:
                 return new ResultadoPlanoAcaoVotoCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
@@ -72,10 +74,11 @@ public class OptionAdminCommand {
         printer.soutln("|  3  | Cadastrar cronograma de execução     |");
         printer.soutln("|  4  | Visualizar cronogramas de execução   |");
         printer.soutln("|  5  | Cadastrar planos de ação             |");
-        printer.soutln("|  6  | Validar atividade                    |");
-        printer.soutln("|  7  | Exibir ranking de comunidades         |");
+        printer.soutln("|  6  | Visualizar planos de ação            |");
+        printer.soutln("|  7  | Validar atividade                    |");
+        printer.soutln("|  8  | Exibir ranking de comunidades        |");
         printer.soutln("----------------------------------------------");
-        printer.soutln("|  8  | [JOB] Gerar resultado votação         |");
+        printer.soutln("|  9  | [JOB] Gerar resultado votação         |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");

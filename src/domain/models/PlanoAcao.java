@@ -21,6 +21,7 @@ public class PlanoAcao extends Model {
     public PlanoAcao(TipoPlanoAcao tipo, CronogramaExecucao cronograma, String nome, String meta, float metaAdesaoMin, float creditosVerdes) {
         this.tipo = tipo;
         this.estado = cronograma.getEstado();
+        this.cronograma = cronograma;
         this.nome = nome;
         this.meta = meta;
         this.metaAdesaoMin = metaAdesaoMin;
