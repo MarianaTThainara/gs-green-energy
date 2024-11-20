@@ -1,11 +1,7 @@
 package console.commands;
 
 import console.Printer;
-import console.commands.app.CronogramaExecucaoCreateCommand;
-import console.commands.app.PlanoAcaoCreateCommand;
-import console.commands.app.TipoPlanoAcaoCreateCommand;
-import console.commands.app.ReviewActivityCommand;
-import console.commands.app.ExibirRankingCommand;
+import console.commands.app.*;
 import console.interfaces.CommandInterface;
 import database.Database;
 import infra.exceptions.InvalidOptionException;
@@ -51,6 +47,8 @@ public class OptionAdminCommand {
                 return new ReviewActivityCommand(sc, db);
             case 5:
                 return new ExibirRankingCommand(sc, db);
+            case 6:
+                return new ResultadoPlanoAcaoVotoCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -70,6 +68,8 @@ public class OptionAdminCommand {
         printer.soutln("|  3  | Cadastrar planos de ação             |");
         printer.soutln("|  4  | Validar atividade                    |");
         printer.soutln("|  5  | Exibir ranking de comunidades         |");
+        printer.soutln("----------------------------------------------");
+        printer.soutln("|  6  | [JOB] Gerar resultado votação         |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");
