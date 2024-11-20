@@ -21,11 +21,14 @@ public class ViewTipoPlanoAcaoCommand extends AppCommand {
         List<TipoPlanoAcao> tiposPlanosAcao = db.getTiposPlanoAcao().values().stream().toList();
 
         for(TipoPlanoAcao tipo : tiposPlanosAcao) {
-            System.out.println(
-                    "Nome: " + tipo.getNome() + " |  Prioridade: " + tipo.getPrioridade() + " |  Grupo: " + tipo.getGrupo() + " | Descrição: " + tipo.getDescricao()
+            System.out.printf(
+                    "Nome: %s | Prioridade: %s | Grupo: %s",
+                    tipo.getNome(),
+                    tipo.getPrioridade(),
+                    tipo.getGrupo()
             );
+            System.out.println("");
         }
-
 
         back();
     }
