@@ -10,10 +10,7 @@ import domain.models.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class AppCommand implements CommandInterface {
 
@@ -137,20 +134,18 @@ public abstract class AppCommand implements CommandInterface {
         );
     }
 
-    protected ResultadoPlanoAcao chooseResultadoPlanoAcao(Database db) {
-        List<ResultadoPlanoAcao> resultados = db.getResultadosPlanosAcao().values().stream().filter(
-                resultado -> resultado.getStatusValidacao().equals(StatusValidacaoEnum.AGUARDANDO)
-        ).toList();
+    protected MercadoVerdeProduto chooseProdutoMercadoVerde(Database db) {
+        List<MercadoVerdeProduto> produtos = db.getMercado().values().stream().toList();
 
         return selectItem(
-                resultados,
-                "Nenhuma pendência encontrada!",
-                res -> String.format(
-                        "Plano ação: %s | Usuário: %s",
-                        res.getPlanoAcao().getNome(),
-                        res.getUsuario().getNome()
+                produtos,
+                "Nenhum produto encontrado!",
+                produto -> String.format(
+                        "Nome: %s | Preço verde: %s",
+                        produto.getNome(),
+                        produto.getPrecoVerde()
                 ),
-                "Escolha um cronograma (número): "
+                "Escolha um produto (número): "
         );
     }
 
@@ -181,8 +176,15 @@ public abstract class AppCommand implements CommandInterface {
             System.out.printf("%d- %s%n", i + 1, formatter.format(items.get(i)));
         }
 
-        System.out.print(promptMessage);
-        int choice = sc.nextInt();
+        int choice = -1;
+
+        try {
+            System.out.print(promptMessage);
+            choice = sc.nextInt();
+        } catch (InputMismatchException e) {
+            printer.soutln("Opção inválida!");
+            return null;
+        }
 
         return (choice < 1 || choice > items.size()) ? null : items.get(choice - 1);
     }

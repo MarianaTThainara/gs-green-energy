@@ -18,6 +18,7 @@ public class Database {
     private Map<String, CronogramaExecucao> cronogramas = new HashMap<>();
     private Map<String, PlanoAcaoVoto> votos = new HashMap<>();
     private Map<String, ResultadoPlanoAcao> resultadosPlanosAcao = new HashMap<>();
+    private Map<String, MercadoVerdeProduto> mercado = new HashMap<>();
 
     public Database() {
         this.database = DatabaseSeeder.getInstance();
@@ -27,6 +28,7 @@ public class Database {
         this.tiposPlanoAcao = database.getTiposPlanosAcao();
         this.cronogramas = database.getCronogramas();
         this.planosAcao = database.getPlanosAcao();
+        this.mercado = database.getProdutos();
     }
 
     public DatabaseSeeder getDatabase() {
@@ -63,5 +65,9 @@ public class Database {
 
     public Map<String, ResultadoPlanoAcao> getResultadosPlanosAcao() {
         return resultadosPlanosAcao;
+    }
+
+    public Map<String, MercadoVerdeProduto> getMercado() {
+        return mercado;
     }
 }

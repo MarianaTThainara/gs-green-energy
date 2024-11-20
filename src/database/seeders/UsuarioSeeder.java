@@ -23,6 +23,8 @@ public class UsuarioSeeder implements DatabaseSeederInterface<Usuario> {
         Comunidade comunidade = comunidades.values().iterator().next();
         Usuario usuario = this.getUsuario(comunidade.getBairro());
 
+        usuario.setCreditosVerde(365000);
+
         usuario.getComunidades().put(comunidade.getId(), comunidade);
         usuarios.put(usuario.getId(), usuario);
         

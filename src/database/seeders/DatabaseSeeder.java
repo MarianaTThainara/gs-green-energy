@@ -17,6 +17,7 @@ public class DatabaseSeeder {
     private Map<String, TipoPlanoAcao> tiposPlanosAcao;
     private Map<String, CronogramaExecucao> cronogramas;
     private Map<String, PlanoAcao> planosAcao;
+    private Map<String, MercadoVerdeProduto> produtos;
 
     private DatabaseSeeder() {
         seed();
@@ -36,6 +37,7 @@ public class DatabaseSeeder {
         this.tiposPlanosAcao = (new TipoPlanoAcaoSeeder()).seed();
         this.cronogramas = (new CronogramaExecucaoSeeder(estados)).seed();
         this.planosAcao = (new PlanoAcaoSeeder(tiposPlanosAcao, cronogramas)).seed();
+        this.produtos = (new MercadoVerdeSeeder()).seed();
     }
 
     public Map<String, Estado> getEstados() {
@@ -60,5 +62,9 @@ public class DatabaseSeeder {
 
     public Map<String, PlanoAcao> getPlanosAcao() {
         return planosAcao;
+    }
+
+    public Map<String, MercadoVerdeProduto> getProdutos() {
+        return Collections.unmodifiableMap(produtos);
     }
 }

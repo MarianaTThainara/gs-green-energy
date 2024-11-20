@@ -1,7 +1,6 @@
 package domain.models;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class Usuario extends Model {
 
@@ -16,7 +15,8 @@ public class Usuario extends Model {
     private float creditosVerde;
     private double consumoAnterior = 0.0;
     private double consumoAtual = 0.0;
-    private HashMap<String, ResultadoPlanoAcao> resultados; // Lista de resultados de atividades
+    private HashMap<String, ResultadoPlanoAcao> resultados;
+    private HashMap<String, CompraProdutoVerdeUsuario> produtos;
 
     public Usuario(String nome, String sobrenome, Long cpf, String email, String senha, HashMap<String, UsuarioEndereco> enderecos) {
         this.nome = nome;
@@ -29,6 +29,7 @@ public class Usuario extends Model {
         this.planosAcao = new HashMap<>();
         this.creditosVerde = 0f;
         this.resultados = new HashMap<>();
+        this.produtos = new HashMap<>();
     }
 
     public String getNome() {
@@ -89,6 +90,10 @@ public class Usuario extends Model {
 
     public HashMap<String, UsuarioEndereco> getEnderecos() {
         return enderecos;
+    }
+
+    public HashMap<String, CompraProdutoVerdeUsuario> getProdutos() {
+        return produtos;
     }
 
     @Override

@@ -1,10 +1,8 @@
 package console.commands;
 
 import console.Printer;
-import console.commands.app.user.CompleteActivityCommand;
-import console.commands.app.user.PlanoAcaoVotoCommand;
+import console.commands.app.user.*;
 import console.commands.app.ExibirRankingCommand;
-import console.commands.app.user.ViewProfileCommand;
 import console.interfaces.CommandInterface;
 import database.Database;
 import domain.models.Usuario;
@@ -56,6 +54,10 @@ public class OptionUserCommand {
                 return new CompleteActivityCommand(sc, db, usuario);
             case 4:
                 return new ExibirRankingCommand(sc, db);
+            case 5:
+                return new MercadoVerdeCommand(sc, db, usuario);
+            case 6:
+                return new ViewProdutoMercadoVerde(sc, db, usuario);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -74,6 +76,8 @@ public class OptionUserCommand {
         printer.soutln("|  2  | Votar em um plano de ação            |");
         printer.soutln("|  3  | Completar plano de ação              |");
         printer.soutln("|  4  | Visualizar ranking de comunidades    |");
+        printer.soutln("|  5  | Mercado verde                        |");
+        printer.soutln("|  6  | Visualizar compras verdes            |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");
