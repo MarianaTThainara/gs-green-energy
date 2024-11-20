@@ -1,30 +1,38 @@
 package domain.services;
 
-import domain.enums.GrupoPlanoAcaoEnum;
-import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 import domain.enums.StatusValidacaoEnum;
 import domain.models.Usuario;
 import domain.models.ResultadoPlanoAcao;
 import domain.models.PlanoAcao;
-import domain.models.TipoPlanoAcao;
 
 public class PlanoAcaoService extends Service {
 
-    public void validarAtividade(Usuario usuario, ResultadoPlanoAcao resultado, boolean isAprovado) {
-        if (isAprovado) {
-            float pontos = calcularPontosPorPrioridade(resultado);
-
-            usuario.setCreditosVerde(usuario.getCreditosVerde() + pontos);
-            resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
-            System.out.println("Atividade validada! " + pontos + " créditos foram adicionados para o usuário " + usuario.getNome());
+    public void validate(Usuario usuario, ResultadoPlanoAcao resultado, boolean isAprovado) {
+        if (!isAprovado) {
+            resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
+            System.out.println(
+                    "Plano de ação realizado pelo usuário foi negado com sucesso!"
+            );
             return;
         }
 
-        resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
-        System.out.println("A atividade não atende aos requisitos de validação. Por favor, revise e envie uma nova imagem.");
+        float pontos = handleCreditosVerdes(resultado);
+
+        usuario.setCreditosVerde(usuario.getCreditosVerde() + pontos);
+        resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
+        System.out.println(
+                "Plano de ação validado! "
+                        + pontos +
+                        " créditos foram adicionados para o usuário "
+                        + usuario.getNome()
+        );
     }
 
-    private float calcularPontosPorPrioridade(ResultadoPlanoAcao resultado) {
+    /**
+     * Simula a geração de creditos verdes com base na adesão minima
+     * definida no plano de ação e a adesão informada pelo usuario
+     */
+    private float handleCreditosVerdes(ResultadoPlanoAcao resultado) {
 
         PlanoAcao planoAcao = resultado.getPlanoAcao();
 

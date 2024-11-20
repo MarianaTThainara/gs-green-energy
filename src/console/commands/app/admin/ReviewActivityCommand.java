@@ -49,15 +49,7 @@ public class ReviewActivityCommand extends AppCommand {
             printer.sout("Deseja aprovar a atividade? (S/N): ");
             String input = sc.next() + sc.nextLine();
 
-            if (input.equals("S")) {
-                resultado.setStatusValidacao(StatusValidacaoEnum.APROVADO);
-                planoAcaoService.validarAtividade(resultado.getUsuario(), resultado, true);
-                printer.soutln("Atividade aprovada. Pontos adicionados ao usuário.");
-                continue;
-            }
-
-            resultado.setStatusValidacao(StatusValidacaoEnum.NEGADO);
-            printer.soutln("Atividade rejeitada. O usuário não receberá créditos verdes");
+            planoAcaoService.validate(resultado.getUsuario(), resultado, input.equals("S"));
             printer.soutln("");
         }
 
