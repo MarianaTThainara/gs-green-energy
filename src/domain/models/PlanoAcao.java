@@ -13,11 +13,11 @@ public class PlanoAcao extends Model {
     private String nome;
     private String meta;
     private float metaAdesaoMin;
-    private float creditosVerdes;
+    private float recompensaVerde;
     private LocalDateTime dataCriacao;
     private LocalDateTime dataAlteracao;
 
-    public PlanoAcao(TipoPlanoAcao tipo, CronogramaExecucao cronograma, String nome, String meta, float metaAdesaoMin, float creditosVerdes) {
+    public PlanoAcao(TipoPlanoAcao tipo, CronogramaExecucao cronograma, String nome, String meta, float metaAdesaoMin, float recompensa) {
         this.tipo = tipo;
         this.estado = cronograma.getEstado();
         this.cronograma = cronograma;
@@ -26,7 +26,7 @@ public class PlanoAcao extends Model {
         this.metaAdesaoMin = metaAdesaoMin;
         this.dataCriacao = LocalDateTime.now();
         this.status = PlanoAcaoStatusEnum.EMABERTO;
-        this.creditosVerdes = creditosVerdes;
+        this.recompensaVerde = recompensa;
     }
 
     public TipoPlanoAcao getTipo() {
@@ -65,8 +65,8 @@ public class PlanoAcao extends Model {
         return dataAlteracao;
     }
 
-    public float getCreditosVerdes() {
-        return creditosVerdes;
+    public float getRecompensaVerde() {
+        return recompensaVerde;
     }
 
     public void setDataAlteracao(LocalDateTime dataAlteracao) {

@@ -38,13 +38,13 @@ public class PlanoAcaoService extends Service {
 
         // Verifica se a adesão já atingiu a meta
         if(resultado.getAdesao() > planoAcao.getMetaAdesaoMin()) {
-            return planoAcao.getCreditosVerdes();
+            return planoAcao.getRecompensaVerde();
         }
 
         // Calcula a porcentagem que falta para atingir a meta de adesão
         float percentualFaltante = (planoAcao.getMetaAdesaoMin() - resultado.getAdesao()) / planoAcao.getMetaAdesaoMin();
 
         // Calcula os créditos verdes com base no percentual faltante
-        return planoAcao.getCreditosVerdes() * (1 - percentualFaltante);
+        return planoAcao.getRecompensaVerde() * (1 - percentualFaltante);
     }
 }
