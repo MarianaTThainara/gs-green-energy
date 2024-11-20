@@ -29,6 +29,12 @@ public class PlanoAcaoVotoCommand extends AppCommand {
         PlanoAcao planoAcao = choosePlanoAcao(db, comunidade.getBairro().getCidade().getEstado());
         if(planoAcao == null) { back(); return; }
 
+        if(usuario.getPlanosAcao().containsKey(planoAcao.getId())) {
+            printer.soutln("Você já votou nesse plano de ação!");
+            back();
+            return;
+        }
+
         PlanoAcaoVoto voto = new PlanoAcaoVoto(
                 planoAcao,
                 usuario
