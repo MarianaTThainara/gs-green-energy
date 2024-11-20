@@ -38,7 +38,7 @@ public class TipoPlanoAcaoSeeder implements DatabaseSeederInterface<TipoPlanoAca
         );
 
         for(TipoPlanoAcao tipo : novosPlanos) {
-            tipos.put(tipo.getId(), tipo);
+            tipos.put(tipo.getNome(), tipo);
         }
 
         return tipos;
