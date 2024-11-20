@@ -55,7 +55,9 @@ public class OptionAdminCommand {
             case 8:
                 return new ExibirRankingCommand(sc, db);
             case 9:
-                return new GerarResultadoPlanoAcaoVotoCommand(sc, db);
+                return new JobGerarResultadoPlanoAcaoVotoCommand(sc, db);
+            case 10:
+                return new JobClosePlanoAcaoCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
                 return null;
@@ -76,10 +78,11 @@ public class OptionAdminCommand {
         printer.soutln("|  4  | Visualizar cronogramas de execução   |");
         printer.soutln("|  5  | Cadastrar planos de ação             |");
         printer.soutln("|  6  | Visualizar planos de ação            |");
-        printer.soutln("|  7  | Validar planos ação                  |");
+        printer.soutln("|  7  | Validar planos ação enviados         |");
         printer.soutln("|  8  | Exibir ranking de comunidades        |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  9  | [JOB] Gerar resultado votação         |");
+        printer.soutln("|  10 | [JOB] Fechar planos de ação           |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");

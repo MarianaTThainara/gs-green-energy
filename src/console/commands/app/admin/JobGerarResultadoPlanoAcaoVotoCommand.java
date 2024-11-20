@@ -3,7 +3,6 @@ package console.commands.app.admin;
 import console.commands.app.AppCommand;
 import database.Database;
 import domain.enums.PlanoAcaoStatusEnum;
-import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 import domain.models.PlanoAcao;
 import domain.models.PlanoAcaoVoto;
 
@@ -11,15 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class GerarResultadoPlanoAcaoVotoCommand extends AppCommand {
+/**
+ * Classe criada para simular o JOB do sistema que é responsável
+ * por calcular o resultado da votação com base na data fim votação
+ */
+public class JobGerarResultadoPlanoAcaoVotoCommand extends AppCommand {
 
-    public GerarResultadoPlanoAcaoVotoCommand(Scanner sc, Database db) {
+    public JobGerarResultadoPlanoAcaoVotoCommand(Scanner sc, Database db) {
         super(sc, db);
     }
 
     @Override
     public void run() {
-        printer.banner("Gerar resultado votação planos de ação");
+        printer.banner("[JOB] Gerar resultado votação planos de ação");
 
         ArrayList<PlanoAcaoVoto> votos =  new ArrayList<>(db.getVotos().values().stream().filter(
                 planoAcaoVoto -> planoAcaoVoto.getPlanoAcao().getStatus() == PlanoAcaoStatusEnum.EMABERTO
