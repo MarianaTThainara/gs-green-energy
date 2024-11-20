@@ -1,8 +1,7 @@
-package console.commands.app;
+package console.commands.app.admin;
 
+import console.commands.app.AppCommand;
 import database.Database;
-import domain.enums.GrupoPlanoAcaoEnum;
-import domain.enums.PrioridadeTipoPlanoAcaoEnum;
 import domain.models.TipoPlanoAcao;
 
 import java.util.List;

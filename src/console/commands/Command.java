@@ -1,12 +1,7 @@
 package console.commands;
 
 import console.Printer;
-import console.commands.app.CronogramaExecucaoCreateCommand;
-import console.commands.app.PlanoAcaoCreateCommand;
-import console.commands.app.TipoPlanoAcaoCreateCommand;
-import console.interfaces.CommandInterface;
 import database.Database;
-import infra.exceptions.InvalidOptionException;
 
 import java.util.Scanner;
 

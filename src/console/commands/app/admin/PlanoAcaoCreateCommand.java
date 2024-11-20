@@ -1,13 +1,11 @@
-package console.commands.app;
+package console.commands.app.admin;
 
+import console.commands.app.AppCommand;
 import database.Database;
 import domain.models.CronogramaExecucao;
-import domain.models.Estado;
 import domain.models.PlanoAcao;
 import domain.models.TipoPlanoAcao;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class PlanoAcaoCreateCommand extends AppCommand {

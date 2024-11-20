@@ -1,5 +1,6 @@
-package console.commands.app;
+package console.commands.app.admin;
 
+import console.commands.app.AppCommand;
 import database.Database;
 import domain.enums.PlanoAcaoStatusEnum;
 import domain.enums.PrioridadeTipoPlanoAcaoEnum;

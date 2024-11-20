@@ -1,13 +1,12 @@
-package console.commands.app;
+package console.commands.app.admin;
 
+import console.commands.app.AppCommand;
 import database.Database;
 import domain.enums.StatusValidacaoEnum;
 import domain.models.AnexoResultadoPlanoAcao;
 import domain.models.ResultadoPlanoAcao;
 import domain.services.PlanoAcaoService;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 

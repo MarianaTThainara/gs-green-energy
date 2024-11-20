@@ -1,9 +1,7 @@
-package console.commands.app;
+package console.commands.app.user;
 
-import console.interfaces.CommandInterface;
+import console.commands.app.AppCommand;
 import database.Database;
-import domain.enums.GrupoPlanoAcaoEnum;
-import domain.interfaces.GrupoTipoPlanoAcaoInterface;
 import domain.models.*;
 import domain.services.GrupoTipoPlanoAcaoService;
 
