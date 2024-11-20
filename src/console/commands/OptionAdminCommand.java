@@ -40,14 +40,16 @@ public class OptionAdminCommand {
             case 1:
                 return new TipoPlanoAcaoCreateCommand(sc, db);
             case 2:
-                return new CronogramaExecucaoCreateCommand(sc, db);
+                return new ViewTipoPlanoAcaoCommand(sc, db);
             case 3:
-                return new PlanoAcaoCreateCommand(sc, db);
+                return new CronogramaExecucaoCreateCommand(sc, db);
             case 4:
-                return new ReviewActivityCommand(sc, db);
+                return new PlanoAcaoCreateCommand(sc, db);
             case 5:
-                return new ExibirRankingCommand(sc, db);
+                return new ReviewActivityCommand(sc, db);
             case 6:
+                return new ExibirRankingCommand(sc, db);
+            case 7:
                 return new ResultadoPlanoAcaoVotoCommand(sc, db);
             case 0:
                 printer.soutln("Saindo do sistema...");
@@ -64,12 +66,13 @@ public class OptionAdminCommand {
         printer.soutln("| Por favor, selecione uma das opções abaixo: |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  1  | Cadastrar tipos planos de ação       |");
-        printer.soutln("|  2  | Cadastrar cronograma de execução     |");
-        printer.soutln("|  3  | Cadastrar planos de ação             |");
-        printer.soutln("|  4  | Validar atividade                    |");
-        printer.soutln("|  5  | Exibir ranking de comunidades         |");
+        printer.soutln("|  2  | Visualizar tipos planos de ação      |");
+        printer.soutln("|  3  | Cadastrar cronograma de execução     |");
+        printer.soutln("|  4  | Cadastrar planos de ação             |");
+        printer.soutln("|  5  | Validar atividade                    |");
+        printer.soutln("|  6  | Exibir ranking de comunidades         |");
         printer.soutln("----------------------------------------------");
-        printer.soutln("|  6  | [JOB] Gerar resultado votação         |");
+        printer.soutln("|  7  | [JOB] Gerar resultado votação         |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
         printer.soutln("----------------------------------------------");
