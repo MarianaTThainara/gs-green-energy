@@ -3,8 +3,10 @@ package console.commands.app.admin;
 import console.commands.app.AppCommand;
 import database.Database;
 import domain.enums.PlanoAcaoStatusEnum;
+import domain.enums.StatusValidacaoEnum;
 import domain.models.Estado;
 import domain.models.PlanoAcao;
+import domain.models.ResultadoPlanoAcao;
 
 import java.util.List;
 import java.util.Scanner;
@@ -29,8 +31,19 @@ public class JobClosePlanoAcaoCommand extends AppCommand  {
 
             printer.soutln("Estado: " + estado.getSigla());
 
-            PlanoAcao planoAcao = choosePlanoAcao(db, estado);
+            PlanoAcao planoAcao = choosePlanoAcao(db, estado, PlanoAcaoStatusEnum.APROVADO);
             if(planoAcao == null) {
+                printer.soutln("");
+                continue;
+            }
+
+            List<ResultadoPlanoAcao> resultadosAguardandoValidacao = db.getResultadosPlanosAcao().values().stream().filter(
+                    resultadoPlanoAcao -> resultadoPlanoAcao.getStatusValidacao() == StatusValidacaoEnum.AGUARDANDO
+            ).toList();
+
+            if(!resultadosAguardandoValidacao.isEmpty()) {
+                printer.soutln("");
+                printer.soutln("Não é possível finalizar esse plano de ação porque existem pendências de validação!");
                 continue;
             }
 
@@ -43,9 +56,10 @@ public class JobClosePlanoAcaoCommand extends AppCommand  {
                     )
             );
 
+            printer.soutln("");
+            printer.sout("Planos de ação encerrados com sucesso!");
         }
 
-        printer.sout("Planos de ação encerrados com sucesso!");
         back();
     }
 }

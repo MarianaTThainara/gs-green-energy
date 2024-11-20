@@ -69,17 +69,18 @@ public abstract class AppCommand implements CommandInterface {
         );
     }
 
-    protected PlanoAcao choosePlanoAcao(Database db, Estado estado) {
+    protected PlanoAcao choosePlanoAcao(Database db, Estado estado, PlanoAcaoStatusEnum status) {
         List<PlanoAcao> planosAcao = new ArrayList<>(db.getPlanosAcao().values().stream().filter(
                 plano -> Objects.equals(plano.getEstado().getNome(), estado.getNome()) &&
-                        plano.getStatus() == PlanoAcaoStatusEnum.EMABERTO
+                        plano.getStatus() == status
         ).toList());
 
         return selectItem(
                 planosAcao,
                 "Nenhum plano de ação encontrado!",
                 plano -> String.format(
-                        "Tipo: %s | Estado: %s | Plano: %s | Meta: %s | Meta adesão mínima: %.2f",
+                        "Status: %s | Tipo: %s | Estado: %s | Plano: %s | Meta: %s | Meta adesão mínima: %.2f",
+                        plano.getStatus(),
                         plano.getTipo().getNome(),
                         plano.getEstado().getSigla(),
                         plano.getNome(),

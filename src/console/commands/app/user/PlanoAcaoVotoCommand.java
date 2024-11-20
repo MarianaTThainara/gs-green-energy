@@ -2,6 +2,7 @@ package console.commands.app.user;
 
 import console.commands.app.AppCommand;
 import database.Database;
+import domain.enums.PlanoAcaoStatusEnum;
 import domain.models.*;
 
 import java.util.Scanner;
@@ -26,7 +27,7 @@ public class PlanoAcaoVotoCommand extends AppCommand {
         Comunidade comunidade = chooseComunidadeUsuario(usuario);
         if(comunidade == null) { back(); return; }
 
-        PlanoAcao planoAcao = choosePlanoAcao(db, comunidade.getBairro().getCidade().getEstado());
+        PlanoAcao planoAcao = choosePlanoAcao(db, comunidade.getBairro().getCidade().getEstado(), PlanoAcaoStatusEnum.EMABERTO);
         if(planoAcao == null) { back(); return; }
 
         if(usuario.getPlanosAcao().containsKey(planoAcao.getId())) {
