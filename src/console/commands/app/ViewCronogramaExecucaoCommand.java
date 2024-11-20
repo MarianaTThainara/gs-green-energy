@@ -5,9 +5,9 @@ import domain.models.CronogramaExecucao;
 import java.util.List;
 import java.util.Scanner;
 
-public class ViewCronogramaExecucao extends AppCommand {
+public class ViewCronogramaExecucaoCommand extends AppCommand {
 
-    public ViewCronogramaExecucao(Scanner sc, Database db) {
+    public ViewCronogramaExecucaoCommand(Scanner sc, Database db) {
         super(sc, db);
     }
 
