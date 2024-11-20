@@ -22,6 +22,7 @@ public class ResultadoPlanoAcao extends Model {
         this.usuario = usuario;
         this.anexos = new HashMap<>();
         this.statusValidacao = StatusValidacaoEnum.AGUARDANDO;
+        this.dataConclusao = LocalDateTime.now();
     }
 
     public ResultadoPlanoAcao(PlanoAcao planoAcao, Usuario usuario, Comunidade comunidade, float adesao) {
