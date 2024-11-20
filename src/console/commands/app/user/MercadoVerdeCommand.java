@@ -30,7 +30,7 @@ public class MercadoVerdeCommand extends AppCommand  {
 
         CompraProdutoVerdeUsuario compraProdutoVerdeUsuario = new CompraProdutoVerdeUsuario(produto, usuario);
 
-        usuario.getProdutos().put(produto.getId(), compraProdutoVerdeUsuario);
+        usuario.getProdutos().add(compraProdutoVerdeUsuario);
 
         float saldoVerdeUsuario = usuario.getCreditosVerde();
 

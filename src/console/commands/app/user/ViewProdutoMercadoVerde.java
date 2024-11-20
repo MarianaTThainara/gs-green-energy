@@ -25,7 +25,7 @@ public class ViewProdutoMercadoVerde extends AppCommand {
     public void run() {
         printer.banner("Produtos adquiridos no mercado verde");
 
-        List<CompraProdutoVerdeUsuario> produtos = usuario.getProdutos().values().stream().toList();
+        List<CompraProdutoVerdeUsuario> produtos = usuario.getProdutos();
 
         if(produtos.isEmpty()) {
             printer.soutln("Nenhum produto verde adquirido!");
@@ -39,6 +39,7 @@ public class ViewProdutoMercadoVerde extends AppCommand {
                     compra.getProduto().getPrecoVerde(),
                     compra.getDataCompra()
             );
+            printer.soutln("");
         }
 
         printer.soutln("");

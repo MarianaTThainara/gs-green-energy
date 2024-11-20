@@ -1,6 +1,8 @@
 package domain.models;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Usuario extends Model {
 
@@ -16,7 +18,7 @@ public class Usuario extends Model {
     private double consumoAnterior = 0.0;
     private double consumoAtual = 0.0;
     private HashMap<String, ResultadoPlanoAcao> resultados;
-    private HashMap<String, CompraProdutoVerdeUsuario> produtos;
+    private List<CompraProdutoVerdeUsuario> produtos;
 
     public Usuario(String nome, String sobrenome, Long cpf, String email, String senha, HashMap<String, UsuarioEndereco> enderecos) {
         this.nome = nome;
@@ -29,7 +31,7 @@ public class Usuario extends Model {
         this.planosAcao = new HashMap<>();
         this.creditosVerde = 0f;
         this.resultados = new HashMap<>();
-        this.produtos = new HashMap<>();
+        this.produtos = new ArrayList<>();
     }
 
     public String getNome() {
@@ -92,7 +94,7 @@ public class Usuario extends Model {
         return enderecos;
     }
 
-    public HashMap<String, CompraProdutoVerdeUsuario> getProdutos() {
+    public List<CompraProdutoVerdeUsuario> getProdutos() {
         return produtos;
     }
 
