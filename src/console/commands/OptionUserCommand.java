@@ -1,10 +1,10 @@
 package console.commands;
 
 import console.Printer;
-import console.commands.app.CompleteActivityCommand;
-import console.commands.app.PlanoAcaoVotoCommand;
-import console.commands.app.RegistrarConsumoCommand;
+import console.commands.app.user.CompleteActivityCommand;
+import console.commands.app.user.PlanoAcaoVotoCommand;
 import console.commands.app.ExibirRankingCommand;
+import console.commands.app.user.ViewProfileCommand;
 import console.interfaces.CommandInterface;
 import database.Database;
 import domain.models.Usuario;
@@ -49,11 +49,11 @@ public class OptionUserCommand {
     private CommandInterface choose(Usuario usuario) {
         switch (op) {
             case 1:
-                return new PlanoAcaoVotoCommand(sc, db, usuario);
+                return new ViewProfileCommand(sc, db, usuario);
             case 2:
-                return new CompleteActivityCommand(sc, db, usuario); // Novo comando para completar atividade
+                return new PlanoAcaoVotoCommand(sc, db, usuario);
             case 3:
-                return new RegistrarConsumoCommand(sc, db);
+                return new CompleteActivityCommand(sc, db, usuario);
             case 4:
                 return new ExibirRankingCommand(sc, db);
             case 0:
@@ -70,9 +70,9 @@ public class OptionUserCommand {
         printer.soutln("----------------------------------------------");
         printer.soutln("| Por favor, selecione uma das opções abaixo: |");
         printer.soutln("----------------------------------------------");
-        printer.soutln("|  1  | Votar em um plano de ação            |");
-        printer.soutln("|  2  | Completar uma atividade              |"); // Nova opção para completar atividade
-        printer.soutln("|  3  | Registrar consumo de energia         |");
+        printer.soutln("|  1  | Visualizar dados pessoais            |");
+        printer.soutln("|  2  | Votar em um plano de ação            |");
+        printer.soutln("|  3  | Completar uma atividade              |");
         printer.soutln("|  4  | Visualizar ranking de comunidades     |");
         printer.soutln("----------------------------------------------");
         printer.soutln("|  0  | Sair                                  |");
