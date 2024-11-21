@@ -1,7 +1,6 @@
-# 🌱**Verny: Acenda a Luz da mudança** 
+![Verny](https://github.com/MarianaTThainara/gs-green-energy/blob/master/src/assets/banner.jpg?raw=true)
 
-Global Solution - FIAP
-
+Global Solution - FIAP |
 Desafio Green Energy 2024: Energia Limpa para um Futuro + Sustentável
 
 ---
