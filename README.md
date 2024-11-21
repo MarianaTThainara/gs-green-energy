@@ -1,8 +1,8 @@
 # 🌱 **VERNY: Acenda a Luz da mudança** 💡
 
-**Global solution FIAP**
+Global solution FIAP
 
-**Desafio Green Energy 2024: Energia Limpa para um Futuro + Sustentável**
+Desafio Green Energy 2024: Energia Limpa para um Futuro + Sustentável
 
 ---
 
