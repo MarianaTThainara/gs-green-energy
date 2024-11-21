@@ -21,8 +21,18 @@ public class ExibirRankingCommand extends AppCommand {
         PontuacaoService pontuacaoService = new PontuacaoService();
         List<Map.Entry<Comunidade, Double>> ranking = pontuacaoService.calcularRanking(db.getComunidades());
 
+        List<Map.Entry<Comunidade, Double>> rankingFiltrado = ranking.stream()
+                .filter(entry -> pontuacaoService.calcularConsumoTotal(entry.getKey()) > 0.0)
+                .toList();
+
+        if (rankingFiltrado.isEmpty()) {
+            printer.soutln("Ranking em processo de apuração!");
+            back();
+            return;
+        }
+
         int posicao = 1;
-        for (Map.Entry<Comunidade, Double> entry : ranking) {
+        for (Map.Entry<Comunidade, Double> entry : rankingFiltrado) {
             Comunidade comunidade = entry.getKey();
             double rankingValue = entry.getValue();
 
