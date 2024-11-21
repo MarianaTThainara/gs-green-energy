@@ -45,7 +45,7 @@ As três melhores comunidades recebem recompensas em **Créditos Verdes**, distr
 
 ### 🎥 Vídeo Pitch
 
-[VERNY - GREEN ENERGY](https://www.youtube.com/embed/UPZfcmeo0EM?si=gtB3p63bE1OmV9Z-)
+[VERNY - GREEN ENERGY](https://www.youtube.com/embed/Z6bm8DO1r7I?si=JI7jvdLvFzt2zoZX)
 
 ---
 
