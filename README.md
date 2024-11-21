@@ -40,6 +40,19 @@ O aplicativo será carregado em um ambiente interativo, permitindo acesso às fu
 
 ---
 
+## Funcionamento
+
+Para testar a proposta do projeto siga os seguintes passos:
+
+1. Acesse como usuário e vote em um plano de ação;
+2. Selecione a opção `0` e entre como Administrador e selecione a opção `9`;
+3. Entre novamente como usuário e complete o plano de ação;
+4. No ambiente do Administrador, valide o plano de ação enviado e selecione a opção `10`;
+5. Visualize o Ranking e o Dashboard no ambiente do Administrador;
+6. Como usuário, visualize seu perfil, ranking e realize compras no mercado verde.
+
+---
+
 ## Recompensas verdes 
 
 Os usuários acumulam **Créditos verdes** ao:
