@@ -17,7 +17,8 @@ public class MercadoVerdeSeeder implements DatabaseSeederInterface<MercadoVerdeP
                 new MercadoVerdeProduto("Turbina Eólica Doméstica 1kW", 150000.00f),
                 new MercadoVerdeProduto("Bateria de Armazenamento de Energia 10kWh", 108000.00f),
                 new MercadoVerdeProduto("Sistema de Aquecimento Solar para Piscina", 205000.00f),
-                new MercadoVerdeProduto("Gerador Eólico Portátil 2kW", 220000.00f)
+                new MercadoVerdeProduto("Gerador Eólico Portátil 2kW", 220000.00f),
+                new MercadoVerdeProduto("Desconto 10% na conta de luz", 500000.00f)
         );
 
         for (MercadoVerdeProduto produto : produtosVerdes) {
