@@ -1,11 +1,15 @@
 package console.commands.app.user;
 
 import console.commands.app.AppCommand;
+import console.interfaces.CommandInterface;
 import database.Database;
 import domain.enums.StatusValidacaoEnum;
 import domain.models.*;
 import domain.services.GrupoTipoPlanoAcaoService;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class CompleteActivityCommand extends AppCommand {
@@ -53,6 +57,9 @@ public class CompleteActivityCommand extends AppCommand {
 
         db.getResultadosPlanosAcao().put(resultado.getId(), resultado);
         usuario.getResultados().put(resultado.getId(), resultado);
+
+        db.getComunidades().forEach((s, comunidade1) -> comunidade1.getUsuarios().put(usuario.getId(), usuario));
+
         db.getUsuarios().put(usuario.getId(), usuario);
 
         printer.soutln("Atividade enviada para análise com sucesso!");
